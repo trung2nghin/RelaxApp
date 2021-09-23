@@ -12,6 +12,10 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		EC532125EF84443EA1B56524 /* Helvetica Black Condensed.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9761D27EE2B24FE5A74E356B /* Helvetica Black Condensed.otf */; };
+		184A6F51C42B491E9AB993B8 /* Helvetica Condensed Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16FA23A5D4F9480A85CEC067 /* Helvetica Condensed Bold.ttf */; };
+		0DA0868BFC3F4D338FDEFE89 /* Helvetica Medium Condensed.otf in Resources */ = {isa = PBXBuildFile; fileRef = C94542E8C1EC4F4A8845419F /* Helvetica Medium Condensed.otf */; };
+		CA737EB0B9D54CF888C5CF7B /* Helvetica Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 36FD70F1918345FE9AB79AE7 /* Helvetica Regular.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +40,10 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = RelaxApp/main.m; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = RelaxApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		9761D27EE2B24FE5A74E356B /* Helvetica Black Condensed.otf */ = {isa = PBXFileReference; name = "Helvetica Black Condensed.otf"; path = "../assets/fonts/Helvetica Black Condensed.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		16FA23A5D4F9480A85CEC067 /* Helvetica Condensed Bold.ttf */ = {isa = PBXFileReference; name = "Helvetica Condensed Bold.ttf"; path = "../assets/fonts/Helvetica Condensed Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C94542E8C1EC4F4A8845419F /* Helvetica Medium Condensed.otf */ = {isa = PBXFileReference; name = "Helvetica Medium Condensed.otf"; path = "../assets/fonts/Helvetica Medium Condensed.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		36FD70F1918345FE9AB79AE7 /* Helvetica Regular.otf */ = {isa = PBXFileReference; name = "Helvetica Regular.otf"; path = "../assets/fonts/Helvetica Regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +117,7 @@
 				00E356EF1AD99517003FC87E /* RelaxAppTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
+				1F8004189E784B49B013B32B /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -123,6 +132,18 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
+		};
+		1F8004189E784B49B013B32B /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				9761D27EE2B24FE5A74E356B /* Helvetica Black Condensed.otf */,
+				16FA23A5D4F9480A85CEC067 /* Helvetica Condensed Bold.ttf */,
+				C94542E8C1EC4F4A8845419F /* Helvetica Medium Condensed.otf */,
+				36FD70F1918345FE9AB79AE7 /* Helvetica Regular.otf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -214,6 +235,10 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				EC532125EF84443EA1B56524 /* Helvetica Black Condensed.otf in Resources */,
+				184A6F51C42B491E9AB993B8 /* Helvetica Condensed Bold.ttf in Resources */,
+				0DA0868BFC3F4D338FDEFE89 /* Helvetica Medium Condensed.otf in Resources */,
+				CA737EB0B9D54CF888C5CF7B /* Helvetica Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
