@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   back: {
     width: 55,
     height: 55,
-    backgroundColor: Colors.bgColor1,
+    backgroundColor: "#E5E5E5",
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 55 / 2,
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   },
   viewbtn: {alignItems: 'center', marginBottom: 16},
   playbtn: {
-    backgroundColor: Colors.primary,
+    backgroundColor: '#8E97FD',
     width: 350,
     height: 60,
     borderRadius: 30,
