@@ -25,7 +25,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 // @ts-ignore
 import playlistData from './main/data/playlist.json';
 // @ts-ignore
-import localTrack from './main/resources/pure.m4a';
+import localTrack from './main/resources/slide.m4a';
 
 type MusicScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -63,9 +63,10 @@ const setupIfNecessary = async () => {
   await TrackPlayer.add(playlistData);
   await TrackPlayer.add({
     url: localTrack,
-    title: 'Pure (Demo)',
-    artist: 'David Chavez',
-    artwork: 'https://i.scdn.co/image/e5c7b168be89098eb686e02152aaee9d3a24e5b6',
+    title: 'Slide',
+    artist: 'Calvin Harris ft. Frank Ocean, Migos',
+    artwork:
+      'https://images-na.ssl-images-amazon.com/images/I/81nldVd81bL._SL1432_.jpg',
     duration: 28,
   });
 
