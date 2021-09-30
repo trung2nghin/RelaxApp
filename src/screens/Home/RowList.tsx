@@ -3,7 +3,8 @@ import React from 'react';
 import {StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
 import {Text, View} from 'react-native-ui-lib';
 import {RootStackParamList} from '../../nav/RootStack';
-import ItemList from './ItemList';
+import IconList from './IconList';
+
 const data = [
   {
     id: '0',
@@ -57,10 +58,9 @@ const RowList = ({title, onPress}: Props) => {
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         {data.map((item, index) => {
           return (
-            <ItemList
+            <IconList
               key={index}
               title={item.title}
-              time={item.time}
               source={item.source}
               onPress={onPress}
             />

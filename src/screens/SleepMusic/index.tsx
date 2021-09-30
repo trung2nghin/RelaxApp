@@ -58,7 +58,11 @@ const SleepMusic = ({navigation}: Props) => {
           Related
         </Text>
         <ScrollView>
-          <RowList title={''} />
+          <RowList
+            onPress={() => {
+              return navigation.navigate('Music');
+            }}
+          />
         </ScrollView>
         <View style={styles.viewbtn}>
           <TouchableOpacity
@@ -82,7 +86,7 @@ const styles = StyleSheet.create({
   back: {
     width: 55,
     height: 55,
-    backgroundColor: "#E5E5E5",
+    backgroundColor: '#E5E5E5',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 55 / 2,

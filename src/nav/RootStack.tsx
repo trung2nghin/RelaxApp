@@ -4,11 +4,13 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import WelcomeSleep from '../screens/WelcomeSleep';
 import Music from '../screens/Music';
 import SleepMusic from '../screens/SleepMusic';
+import Home from '../screens/Home';
 
 export type RootStackParamList = {
   WelcomeSleep: undefined;
   SleepMusic: undefined;
   Music: undefined;
+  Home: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -31,6 +33,11 @@ const RootStack = () => {
           component={SleepMusic}
           options={{headerShown: false}}
         />
+        {/* <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{headerShown: false}}
+        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
