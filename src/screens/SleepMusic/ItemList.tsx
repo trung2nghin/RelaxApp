@@ -11,7 +11,7 @@ interface Props {
   title: string;
   source: ImageSourcePropType;
   time: string;
-  onPress(): undefined;
+  onPress: () => void;
 }
 
 const ItemList = ({title, source, time, onPress}: Props) => {

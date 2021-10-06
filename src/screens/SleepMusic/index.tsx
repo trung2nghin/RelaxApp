@@ -4,11 +4,14 @@ import {
   ScrollView,
   Dimensions,
   TouchableOpacity,
+  FlatList,
 } from 'react-native';
 import {Colors, Text, View, Image} from 'react-native-ui-lib';
 import RowList from './RowList';
 import {RootStackParamList} from '../../nav/RootStack';
 import {StackNavigationProp} from '@react-navigation/stack';
+import urls from '../../config/Api';
+import {ISong} from '../../data/itemSong';
 
 type SleepMusicScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -18,9 +21,38 @@ type SleepMusicScreenNavigationProp = StackNavigationProp<
 type Props = {
   navigation: SleepMusicScreenNavigationProp;
 };
-
 const width = Dimensions.get('window').width;
+
 const SleepMusic = ({navigation}: Props) => {
+  const [loading, setLoading] = React.useState<boolean>(true);
+  const [data, setData] = React.useState<ISong[]>([]);
+  const [isRefresh, setIsRefresh] = React.useState(false);
+
+  React.useEffect(() => {
+    fetch(urls.song)
+      .then(response => response.json())
+      .then(songs => {
+        setData(songs);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
+
+  const onRefresh = React.useCallback(() => {
+    setIsRefresh(true);
+    fetch(urls.song)
+      .then(response => response.json())
+      .then(songs => {
+        setData(songs);
+        setIsRefresh(false);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
+
   return (
     <View backgroundColor={Colors.bgColor2} flex>
       {/* image */}
@@ -57,13 +89,36 @@ const SleepMusic = ({navigation}: Props) => {
         <Text b24 color="white" marginL-24>
           Related
         </Text>
-        <ScrollView>
+        <FlatList
+          horizontal
+          data={data}
+          keyExtractor={({id}, index) => id}
+          renderItem={({item}) => (
+            <View>
+              <TouchableOpacity
+                onPress={() => {
+                  return navigation.navigate('Music');
+                }}>
+                <Image
+                  style={{width: 177, height: 122}}
+                  source={{uri: `${item.artwork}`}}
+                />
+                <Text color="white">
+                  {item.title} {'\n'}
+                  {item.artist}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          )}
+        />
+        {/* <ScrollView>
           <RowList
             onPress={() => {
               return navigation.navigate('Music');
             }}
+            title={''}
           />
-        </ScrollView>
+        </ScrollView> */}
         <View style={styles.viewbtn}>
           <TouchableOpacity
             style={styles.playbtn}

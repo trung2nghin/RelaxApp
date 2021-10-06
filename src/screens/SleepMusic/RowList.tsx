@@ -45,7 +45,7 @@ const data = [
 
 interface Props {
   title: string;
-  onPress(): undefined;
+  onPress: () => void;
 }
 
 const RowList = ({title, onPress}: Props) => {

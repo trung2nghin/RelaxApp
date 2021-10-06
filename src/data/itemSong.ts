@@ -1,0 +1,43 @@
+export interface ISong {
+  title: string;
+  artist: string;
+  artwork: string;
+  url: string;
+  duration: number;
+}
+
+const itemSong: ISong[] = [
+  {
+    url: 'https://drive.google.com/uc?export=download&id=1Zpsqmvfb2jkPYdwz_Noe7-qINNNqmE0f',
+    title: 'Slide',
+    artist: 'Calvin Harris ft. Frank Ocean, Migos',
+    artwork:
+      'https://images-na.ssl-images-amazon.com/images/I/81nldVd81bL._SL1432_.jpg',
+    duration: 99,
+  },
+  {
+    url: 'https://drive.google.com/uc?export=download&id=1QAw6qmQTY70Or9AAOT-UC1ol4MYCCVXr',
+    title: 'Cash Out',
+    artist: 'Calvin Harris ft. ScHoolboy Q, PARTYNEXTDOOR, D.R.A.M.',
+    artwork:
+      'https://images-na.ssl-images-amazon.com/images/I/81nldVd81bL._SL1432_.jpg',
+    duration: 67,
+  },
+  {
+    url: 'https://drive.google.com/uc?export=download&id=13dTn-WKHzYRnyEFNCPxCKrqaV84p7A94',
+    title: 'Rollin',
+    artist: 'Calvin Harris ft. Future, Khalid',
+    artwork:
+      'https://images-na.ssl-images-amazon.com/images/I/81nldVd81bL._SL1432_.jpg',
+    duration: 70,
+  },
+  {
+    url: 'https://drive.google.com/uc?export=download&id=1G5bZwx14Nv07C5-D-xHxo6UOPQrP0-si',
+    title: 'You Know You Like It (Tchami Remix)',
+    artist: 'AlunaGeorge, DJ Snak',
+    artwork: 'https://i.scdn.co/image/ab67616d0000b273586da93a803e867ab6842cda',
+    duration: 9,
+  },
+];
+
+export default itemSong;
