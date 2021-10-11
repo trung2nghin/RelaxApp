@@ -1,170 +1,90 @@
 import React from 'react';
-import {
-  StyleSheet,
-  ScrollView,
-  Dimensions,
-  TouchableOpacity,
-  FlatList,
-} from 'react-native';
-import {Colors, Text, View, Image} from 'react-native-ui-lib';
-import RowList from './RowList';
+import {Dimensions, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, Colors, Image} from 'react-native-ui-lib';
 import {RootStackParamList} from '../../../nav/RootStack';
 import {StackNavigationProp} from '@react-navigation/stack';
-import urls from '../../../config/Api';
-import {ISong} from '../../../data/itemSong';
+import SleepMusic from './TrackList';
 
-type SleepMusicScreenNavigationProp = StackNavigationProp<
+type WelcomeSleepScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
-  'SleepMusic'
+  'WelcomeSleep'
 >;
 
 type Props = {
-  navigation: SleepMusicScreenNavigationProp;
+  navigation: WelcomeSleepScreenNavigationProp;
 };
+
 const width = Dimensions.get('window').width;
-
-const SleepMusic = ({navigation}: Props) => {
-  const [loading, setLoading] = React.useState<boolean>(true);
-  const [data, setData] = React.useState<ISong[]>([]);
-  const [isRefresh, setIsRefresh] = React.useState(false);
-
-  React.useEffect(() => {
-    fetch(urls.song)
-      .then(response => response.json())
-      .then(songs => {
-        setData(songs);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }, []);
-
-  const onRefresh = React.useCallback(() => {
-    setIsRefresh(true);
-    fetch(urls.song)
-      .then(response => response.json())
-      .then(songs => {
-        setData(songs);
-        setIsRefresh(false);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }, []);
-
+const height = Dimensions.get('window').height;
+const WelcomeSleep = ({navigation}: Props) => {
   return (
-    <View backgroundColor={Colors.bgColor2} flex>
-      {/* image */}
-      <View flex>
-        <TouchableOpacity
-          style={styles.back}
-          onPress={() => {
-            navigation.goBack();
-          }}>
-          <Image assetGroup="icons" assetName="Back" />
-        </TouchableOpacity>
-        <Image assetGroup="SleepMusic" assetName="header" style={styles.bg} />
-      </View>
-
-      {/* info */}
-      <View height={155} width={width - 48} paddingT-20 marginL-24>
-        <Text b28 color="white">
-          Night Music
+    <View flex backgroundColor={Colors.bgColor2}>
+      <Image
+        assetGroup="WelcomeSleep"
+        assetName="welcomesleep"
+        style={styles.bg}
+      />
+      <Image assetGroup="WelcomeSleep" assetName="bgsleep" style={styles.bg1} />
+      <View flex center marginT-50>
+        <Text b28 marginB-15 textColor4>
+          Welcome to Sleep
         </Text>
-        <Text m14 textColor7 marginT-10>
-          45 Min - Sleep Music
-        </Text>
-        <Text r18 textColor7 marginT-10>
-          Ease the mind into a restful night’s sleep with {'\n'}these deep,
-          amblent tones.
-        </Text>
-        <Text color="white" numberOfLines={1}>
-          ____________________________________________________
-        </Text>
-      </View>
-
-      {/* related button */}
-      <View flex>
-        <Text b24 color="white" marginL-24>
-          Related
-        </Text>
-        <FlatList
-          horizontal
-          data={data}
-          keyExtractor={({id}, index) => id}
-          renderItem={({item}) => (
-            <View>
-              <TouchableOpacity
-                onPress={() => {
-                  return navigation.navigate('Music');
-                }}>
-                <Image
-                  style={{width: 177, height: 122}}
-                  source={{uri: `${item.artwork}`}}
-                />
-                <Text color="white">
-                  {item.title} {'\n'}
-                  {item.artist}
-                </Text>
-              </TouchableOpacity>
-            </View>
-          )}
-        />
-        {/* <ScrollView>
-          <RowList
-            onPress={() => {
-              return navigation.navigate('Music');
-            }}
-            title={''}
-          />
-        </ScrollView> */}
-        <View style={styles.viewbtn}>
-          <TouchableOpacity
-            style={styles.playbtn}
-            onPress={() => {
-              navigation.navigate('Music');
-            }}>
-            <Text m16 textColor8>
-              PLAY
-            </Text>
-          </TouchableOpacity>
+        <View center>
+          <Text r14 textColor3 marginB-8>
+            Explore the new king of sleep. It uses sound
+          </Text>
+          <Text r14 textColor3 marginB-8>
+            and vesualization to create perfect conditions
+          </Text>
+          <Text r14 textColor3 marginB-8>
+            for refreshing sleep.
+          </Text>
         </View>
+      </View>
+
+      <View flex center>
+        <Image assetGroup="WelcomeSleep" assetName="Bird" style={styles.img} />
+      </View>
+
+      <View flex center>
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={() => {
+            navigation.navigate('SleepMusic');
+          }}>
+          <Text m14 textColor8>
+            GET STARTED
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
 };
 
-export default SleepMusic;
+export default WelcomeSleep;
 
 const styles = StyleSheet.create({
-  back: {
-    width: 55,
-    height: 55,
-    backgroundColor: '#E5E5E5',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 55 / 2,
-    marginLeft: 20,
-    position: 'absolute',
-    zIndex: 1,
-    marginTop: 35,
-  },
   bg: {
     alignSelf: 'center',
     position: 'absolute',
     width: width,
-    height: (width / 414) * 290,
-    resizeMode: 'cover',
+    height: height,
+    resizeMode: 'stretch',
   },
-  viewbtn: {alignItems: 'center', marginBottom: 16},
-  playbtn: {
-    backgroundColor: '#8E97FD',
+  bg1: {
+    alignSelf: 'center',
+    position: 'absolute',
+    width: width,
+    height: height,
+    resizeMode: 'stretch',
+  },
+  img: {alignSelf: 'center', marginTop: 55, position: 'absolute'},
+  btn: {
     width: 350,
     height: 60,
-    borderRadius: 30,
-    alignItems: 'center',
+    backgroundColor: '#8E97FD',
     justifyContent: 'center',
-    alignSelf: 'center',
+    alignItems: 'center',
+    borderRadius: 38,
   },
 });

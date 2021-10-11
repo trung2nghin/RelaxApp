@@ -1,9 +1,9 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import WelcomeSleep from '../screens/WelcomeSleep';
+import WelcomeSleep from '../screens/mainTab/Sleep/index';
 import Music from '../screens/mainTab/Music';
-import SleepMusic from '../screens/mainTab/Sleep';
+import SleepMusic from '../screens/mainTab/Sleep/TrackList';
 import Home from '../screens/StartScreen';
 import MainTab from './MainTab';
 

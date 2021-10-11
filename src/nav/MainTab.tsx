@@ -3,7 +3,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Home from '../screens/mainTab/Home';
 import Meditate from '../screens/mainTab/Meditate';
 import Music from '../screens/mainTab/Music';
-import Sleep from '../screens/mainTab/Sleep';
+import Sleep from '../screens/mainTab/Sleep/index';
 import User from '../screens/mainTab/User';
 import {Image, Colors} from 'react-native-ui-lib';
 
@@ -46,7 +46,11 @@ const MainTab = () => {
         component={Meditate}
         options={{
           tabBarIcon: ({focused, color}) => (
-            <Image assetGroup="iconsTab" assetName="Meditate" tintColor={color} />
+            <Image
+              assetGroup="iconsTab"
+              assetName="Meditate"
+              tintColor={color}
+            />
           ),
         }}></Tab.Screen>
 
