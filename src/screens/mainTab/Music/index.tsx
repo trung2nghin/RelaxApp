@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {View, Text, Image, Colors} from 'react-native-ui-lib';
 import Slider from '@react-native-community/slider';
-import {RootStackParamList} from '../../nav/RootStack';
+
 import {StackNavigationProp} from '@react-navigation/stack';
 import TrackPlayer, {
   Capability,
@@ -23,9 +23,10 @@ import TrackPlayer, {
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 // @ts-ignore
-import playlistData from './main/data/playlist.json';
+import playlistData from '../../../data/itemSong';
+import {RootStackParamList} from '../../../nav/RootStack';
 // @ts-ignore
-import localTrack from './main/resources/slide.m4a';
+// import localTrack from './main/resources/slide.m4a';
 
 type MusicScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -61,14 +62,14 @@ const setupIfNecessary = async () => {
   });
 
   await TrackPlayer.add(playlistData);
-  await TrackPlayer.add({
-    url: localTrack,
-    title: 'Slide',
-    artist: 'Calvin Harris ft. Frank Ocean, Migos',
-    artwork:
-      'https://images-na.ssl-images-amazon.com/images/I/81nldVd81bL._SL1432_.jpg',
-    duration: 28,
-  });
+  // await TrackPlayer.add({
+  //   url: ,
+  //   title: 'Slide',
+  //   artist: 'Calvin Harris ft. Frank Ocean, Migos',
+  //   artwork:
+  //     'https://images-na.ssl-images-amazon.com/images/I/81nldVd81bL._SL1432_.jpg',
+  //   duration: 28,
+  // });
 
   TrackPlayer.setRepeatMode(RepeatMode.Queue);
 };

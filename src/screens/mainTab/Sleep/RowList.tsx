@@ -2,7 +2,7 @@ import {NavigationProp, useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
 import {Text, View} from 'react-native-ui-lib';
-import {RootStackParamList} from '../../nav/RootStack';
+import {RootStackParamList} from '../../../nav/RootStack';
 import ItemList from './ItemList';
 const data = [
   {

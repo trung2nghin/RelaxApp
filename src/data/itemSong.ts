@@ -34,7 +34,7 @@ const itemSong: ISong[] = [
   {
     url: 'https://drive.google.com/uc?export=download&id=1G5bZwx14Nv07C5-D-xHxo6UOPQrP0-si',
     title: 'You Know You Like It (Tchami Remix)',
-    artist: 'AlunaGeorge, DJ Snak',
+    artist: 'AlunaGeorge, DJ Snake',
     artwork: 'https://i.scdn.co/image/ab67616d0000b273586da93a803e867ab6842cda',
     duration: 9,
   },
