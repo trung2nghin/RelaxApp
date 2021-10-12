@@ -6,7 +6,6 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
-import MainTab from '../../../nav/MainTab';
 import {Text, View} from 'react-native-ui-lib';
 
 const data = [
@@ -38,7 +37,7 @@ const data = [
 
 const Home = () => {
   return (
-    <View flex>
+    <ScrollView>
       <View marginL-16 marginT-30>
         <Text b30>Good Morning</Text>
         <Text l20>We wish you have a good day</Text>
@@ -85,7 +84,7 @@ const Home = () => {
           </View>
         )}
       />
-    </View>
+    </ScrollView>
   );
 };
 

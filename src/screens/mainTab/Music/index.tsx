@@ -116,7 +116,6 @@ const Music = ({navigation}: Props) => {
 
   return (
     <SafeAreaView style={styles.screenContainer}>
-      <Image assetGroup="WelcomeSleep" assetName="bg" style={styles.bg} />
 
       <View row marginT-35>
         <TouchableOpacity
@@ -124,22 +123,22 @@ const Music = ({navigation}: Props) => {
           onPress={() => {
             navigation.goBack();
           }}>
-          <Image assetGroup="icons" assetName="x" />
+          <Ionicons name="close" size={28} color={Colors.textColor} />
         </TouchableOpacity>
         <View flex row right>
           <TouchableOpacity style={styles.like}>
-            <Image assetGroup="icons" assetName="Heart" />
+          <Ionicons name="heart" size={28} color={Colors.textColor} />
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.download}>
-            <Image assetGroup="icons" assetName="Down" />
+          <Ionicons name="download" size={28} color={Colors.textColor} />
           </TouchableOpacity>
         </View>
       </View>
 
       <View style={styles.contentContainer}>
         <Image style={styles.artwork} source={{uri: `${trackArtwork}`}} />
-        <Text b34 textColor4 marginB-10>
+        <Text b34 textColor marginB-10>
           {trackTitle}
         </Text>
         <Text m14 textColor7>
@@ -151,7 +150,7 @@ const Music = ({navigation}: Props) => {
           minimumValue={0}
           maximumValue={progress.duration}
           thumbTintColor="#8E97FD"
-          minimumTrackTintColor="#E6E7F2"
+          minimumTrackTintColor="#7583CA"
           maximumTrackTintColor="#3F414E"
           onSlidingComplete={async value => {
             await TrackPlayer.seekTo(value);
@@ -172,7 +171,7 @@ const Music = ({navigation}: Props) => {
       <View style={styles.actionRowContainer}>
         <TouchableOpacity onPress={() => TrackPlayer.skipToPrevious()}>
           {/* <Image assetGroup="playicons" assetName="back15" /> */}
-          <Ionicons name="play-skip-back" size={35} color={'white'} />
+          <Ionicons name="play-skip-back" size={35} color={Colors.textColor} />
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => togglePlayback(playbackState)}>
@@ -183,11 +182,11 @@ const Music = ({navigation}: Props) => {
                 : 'ios-play-circle-outline'
             }
             size={90}
-            color={'white'}></Ionicons>
+            color={Colors.textColor}></Ionicons>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => TrackPlayer.skipToNext()}>
-          <Ionicons name="play-skip-forward" size={35} color={'white'} />
+          <Ionicons name="play-skip-forward" size={35} color={Colors.textColor} />
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -198,6 +197,7 @@ const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
     alignItems: 'center',
+    backgroundColor: Colors.textColor3
   },
   bg: {
     alignSelf: 'center',
@@ -223,7 +223,7 @@ const styles = StyleSheet.create({
   like: {
     width: 55,
     height: 55,
-    backgroundColor: Colors.textColor6,
+    backgroundColor: Colors.bgColor1,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 55 / 2,
@@ -232,7 +232,7 @@ const styles = StyleSheet.create({
   download: {
     width: 55,
     height: 55,
-    backgroundColor: Colors.textColor6,
+    backgroundColor: Colors.bgColor1,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 55 / 2,
@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
     // backgroundColor: 'yellow',
   },
   progressLabelText: {
-    color: 'white',
+    color: Colors.textColor,
     fontVariant: ['tabular-nums'],
   },
   actionRowContainer: {

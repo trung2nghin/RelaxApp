@@ -6,11 +6,11 @@ import Music from '../screens/mainTab/Music';
 import Sleep from '../screens/mainTab/Sleep/index';
 import User from '../screens/mainTab/User';
 import {Image, Colors} from 'react-native-ui-lib';
+import { OffsetType } from 'react-native-ui-lib/generatedTypes/src/hooks/useScrollToItem';
 
 export type MainTabParamList = {
   Home: undefined;
   Sleep: undefined;
-  Meditate: undefined;
   Music: undefined;
   User: undefined;
 };
@@ -28,7 +28,7 @@ const MainTab = () => {
         component={Home}
         options={{
           tabBarIcon: ({focused, color}) => (
-            <Image assetGroup="iconsTab" assetName="Home" tintColor={color} />
+            <Image assetGroup="iconsTab" assetName="Home" tintColor={color}/>
           ),
         }}></Tab.Screen>
 
@@ -41,18 +41,6 @@ const MainTab = () => {
           ),
         }}></Tab.Screen>
 
-      <Tab.Screen
-        name="Meditate"
-        component={Meditate}
-        options={{
-          tabBarIcon: ({focused, color}) => (
-            <Image
-              assetGroup="iconsTab"
-              assetName="Meditate"
-              tintColor={color}
-            />
-          ),
-        }}></Tab.Screen>
 
       <Tab.Screen
         name="Music"

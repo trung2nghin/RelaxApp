@@ -3,7 +3,6 @@ import {Dimensions, StyleSheet, TouchableOpacity} from 'react-native';
 import {View, Text, Colors, Image} from 'react-native-ui-lib';
 import {RootStackParamList} from '../../../nav/RootStack';
 import {StackNavigationProp} from '@react-navigation/stack';
-import SleepMusic from './TrackList';
 
 type WelcomeSleepScreenNavigationProp = StackNavigationProp<
   RootStackParamList,

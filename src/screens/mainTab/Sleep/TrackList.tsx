@@ -10,7 +10,7 @@ import {Colors, Text, View, Image} from 'react-native-ui-lib';
 import RowList from './RowList';
 import {RootStackParamList} from '../../../nav/RootStack';
 import {StackNavigationProp} from '@react-navigation/stack';
-import urls from '../../../config/Api';
+import urls from '../../../config/Api'; 
 import {ISong} from '../../../data/itemSong';
 
 type SleepMusicScreenNavigationProp = StackNavigationProp<
