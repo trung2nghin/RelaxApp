@@ -84,6 +84,7 @@ Typography.loadTypographies({
   b24: {
     fontSize: 24,
     lineHeight: 26,
+    fontWeight: 'bold',
     fontFamily: FONTS.Bold,
   },
   b28: {

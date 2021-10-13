@@ -45,13 +45,13 @@ const RootStack = () => {
           options={{headerShown: false}}
         /> */}
         <Stack.Screen
-          name="SleepMusic"
-          component={SleepMusic}
+          name="MainTab"
+          component={MainTab}
           options={{headerShown: false}}
         />
         <Stack.Screen
-          name="MainTab"
-          component={MainTab}
+          name="SleepMusic"
+          component={SleepMusic}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import {View, Text, Image, Colors} from 'react-native-ui-lib';
 import Slider from '@react-native-community/slider';
-
 import {StackNavigationProp} from '@react-navigation/stack';
 import TrackPlayer, {
   Capability,
@@ -21,6 +20,7 @@ import TrackPlayer, {
   useTrackPlayerEvents,
 } from 'react-native-track-player';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 // @ts-ignore
 import playlistData from '../../../data/itemSong';
@@ -62,14 +62,6 @@ const setupIfNecessary = async () => {
   });
 
   await TrackPlayer.add(playlistData);
-  // await TrackPlayer.add({
-  //   url: ,
-  //   title: 'Slide',
-  //   artist: 'Calvin Harris ft. Frank Ocean, Migos',
-  //   artwork:
-  //     'https://images-na.ssl-images-amazon.com/images/I/81nldVd81bL._SL1432_.jpg',
-  //   duration: 28,
-  // });
 
   TrackPlayer.setRepeatMode(RepeatMode.Queue);
 };
@@ -87,15 +79,41 @@ const togglePlayback = async (playbackState: State) => {
   }
 };
 
-// }
-// {
 const Music = ({navigation}: Props) => {
   const playbackState = usePlaybackState();
   const progress = useProgress();
-
+  const [repeatMode, setRepeatMode] = useState('off');
   const [trackArtwork, setTrackArtwork] = useState<string | number>();
   const [trackTitle, setTrackTitle] = useState<string>();
   const [trackArtist, setTrackArtist] = useState<string>();
+
+  const repeatIcon = () => {
+    if (repeatMode == 'off') {
+      return 'repeat-off';
+    }
+    if (repeatMode == 'track') {
+      return 'repeat-once';
+    }
+    if (repeatMode == 'repeat') {
+      return 'repeat';
+    }
+  };
+
+  const changeRepeatMode = () => {
+    if (repeatMode == 'off') {
+      TrackPlayer.setRepeatMode(RepeatMode.Track);
+      setRepeatMode('track');
+    }
+    if (repeatMode == 'track') {
+      TrackPlayer.setRepeatMode(RepeatMode.Queue);
+      setRepeatMode('repeat');
+    }
+    if (repeatMode == 'repeat') {
+      TrackPlayer.setRepeatMode(RepeatMode.Off);
+      setRepeatMode('off');
+    }
+  };
+
   useTrackPlayerEvents([Event.PlaybackTrackChanged], async event => {
     if (
       event.type === Event.PlaybackTrackChanged &&
@@ -112,11 +130,9 @@ const Music = ({navigation}: Props) => {
   useEffect(() => {
     setupIfNecessary();
   }, []);
-  // }
 
   return (
     <SafeAreaView style={styles.screenContainer}>
-
       <View row marginT-35>
         <TouchableOpacity
           style={styles.close}
@@ -127,11 +143,15 @@ const Music = ({navigation}: Props) => {
         </TouchableOpacity>
         <View flex row right>
           <TouchableOpacity style={styles.like}>
-          <Ionicons name="heart" size={28} color={Colors.textColor} />
+            <Ionicons name="heart" size={28} color={Colors.textColor} />
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.download}>
-          <Ionicons name="download" size={28} color={Colors.textColor} />
+          <TouchableOpacity style={styles.download} onPress={changeRepeatMode}>
+            <MaterialCommunityIcons
+              name={`${repeatIcon()}`}
+              size={28}
+              color={repeatMode !== 'off' ? Colors.primary : Colors.textColor}
+            />
           </TouchableOpacity>
         </View>
       </View>
@@ -186,7 +206,11 @@ const Music = ({navigation}: Props) => {
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => TrackPlayer.skipToNext()}>
-          <Ionicons name="play-skip-forward" size={35} color={Colors.textColor} />
+          <Ionicons
+            name="play-skip-forward"
+            size={35}
+            color={Colors.textColor}
+          />
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -197,7 +221,7 @@ const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: Colors.textColor3
+    backgroundColor: Colors.textColor3,
   },
   bg: {
     alignSelf: 'center',
