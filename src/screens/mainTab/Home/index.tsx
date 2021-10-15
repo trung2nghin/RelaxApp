@@ -7,6 +7,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {Text, View, Colors} from 'react-native-ui-lib';
+import Container from '../../../components/Container';
+import Txt from '../../../components/Txt';
 
 const data = [
   {
@@ -37,11 +39,12 @@ const data = [
 
 const Home = () => {
   return (
-    <View backgroundColor={Colors.bgColor1}>
+    // <View backgroundColor={Colors.bgColor1}>
+    <Container>
       <ScrollView>
         <View marginL-16 marginT-30>
-          <Text b30>Good Morning</Text>
-          <Text l20>We wish you have a good day</Text>
+          <Txt b30>Good Morning</Txt>
+          <Txt l20>We wish you have a good day</Txt>
         </View>
 
         <View
@@ -65,9 +68,9 @@ const Home = () => {
           </TouchableOpacity>
         </View>
 
-        <Text black b24 marginH-12 marginT-24>
+        <Txt black b24 marginH-12 marginT-24>
           Sleep Music
-        </Text>
+        </Txt>
 
         <FlatList
           horizontal
@@ -87,9 +90,9 @@ const Home = () => {
           )}
         />
 
-        <Text black b24 marginH-12 marginT-24>
+        <Txt black b24 marginH-12 marginT-24>
           Meditate Music
-        </Text>
+        </Txt>
 
         <FlatList
           horizontal
@@ -110,7 +113,8 @@ const Home = () => {
         />
         <View height={90}></View>
       </ScrollView>
-    </View>
+      </Container>
+    // </View>
   );
 };
 

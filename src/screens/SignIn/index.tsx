@@ -1,11 +1,59 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {StyleSheet, TouchableOpacity, TextInput} from 'react-native';
 import {Colors, Image, View, Text} from 'react-native-ui-lib';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Feather from 'react-native-vector-icons/Feather';
+import * as Animatable from 'react-native-animatable';
+import {RootStackParamList} from '../../nav/RootStack';
+import {StackNavigationProp} from '@react-navigation/stack';
 
-const SignIn = () => {
-  const [text, onChangeText] = React.useState('');
-  const [pass, onChangePass] = React.useState('');
+type SignInScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'SignIn'
+>;
+
+type Props = {
+  navigation: SignInScreenNavigationProp;
+};
+
+const SignIn = ({navigation}: Props) => {
+  const [data, setData] = React.useState({
+    email: '',
+    password: '',
+    check_textInputChange: false,
+    secureTextEntry: true,
+  });
+
+  const textInputChange = val => {
+    if (val.length !== 0) {
+      setData({
+        ...data,
+        email: val,
+        check_textInputChange: true,
+      });
+    } else {
+      setData({
+        ...data,
+        email: val,
+        check_textInputChange: false,
+      });
+    }
+  };
+
+  const handlePasswordChange = val => {
+    setData({
+      ...data,
+      password: val,
+    });
+  };
+
+  const updateSecureTextEntry = () => {
+    setData({
+      ...data,
+      secureTextEntry: !data.secureTextEntry,
+    });
+  };
+
   return (
     <View flex backgroundColor={Colors.textInput}>
       {/* View 1 */}
@@ -64,34 +112,67 @@ const SignIn = () => {
       {/* View 2 */}
       <View flex>
         <View flex style={{alignItems: 'center'}}>
-          <TextInput
-            placeholder="Email Address"
-            onChangeText={onChangeText}
-            value={text}
-            style={{
-              width: 350,
-              height: 55,
-              backgroundColor: Colors.bgColor1,
-              marginBottom: 20,
-              borderRadius: 10,
-              padding: 20,
-            }}></TextInput>
-          <TextInput
-            placeholder="Password"
-            onChangeText={onChangePass}
-            value={pass}
-            style={{
-              width: 350,
-              height: 55,
-              backgroundColor: Colors.bgColor1,
-              borderRadius: 10,
-              padding: 20,
-            }}></TextInput>
+          <View row>
+            <TextInput
+              placeholder="Email Address"
+              onChangeText={val => textInputChange(val)}
+              style={{
+                width: 350,
+                height: 55,
+                backgroundColor: Colors.bgColor1,
+                marginBottom: 20,
+                borderRadius: 10,
+                padding: 20,
+              }}
+            />
+            {data.check_textInputChange ? (
+              <Animatable.View animation="bounceIn">
+                <Feather
+                  name="check-circle"
+                  size={24}
+                  color={Colors.primary}
+                  style={{position: 'absolute', right: 10, top: 15}}
+                />
+              </Animatable.View>
+            ) : null}
+          </View>
+
+          <View row>
+            <TextInput
+              placeholder="Password"
+              secureTextEntry={data.secureTextEntry ? true : false}
+              onChangeText={val => handlePasswordChange(val)}
+              style={{
+                width: 350,
+                height: 55,
+                backgroundColor: Colors.bgColor1,
+                borderRadius: 10,
+                padding: 20,
+              }}
+            />
+            {/* <TouchableOpacity onPress={updateSecureTextEntry}>
+              {data.secureTextEntry ? (
+                <Feather
+                  name="eye-off"
+                  size={24}
+                  color={Colors.textColor2}
+                  style={{ right: 35, top: 15}}
+                />
+              ) : (
+                <Feather
+                  name="eye"
+                  size={24}
+                  color={Colors.textColor2}
+                  style={{ right: 35, top: 15}}
+                />
+              )}
+            </TouchableOpacity> */}
+          </View>
         </View>
 
         <View flex>
           <View center marginB-12>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
               <View
                 width={350}
                 height={55}

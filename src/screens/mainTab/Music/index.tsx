@@ -21,10 +21,12 @@ import TrackPlayer, {
 } from 'react-native-track-player';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Container from '../../../components/Container';
 
 // @ts-ignore
 import playlistData from '../../../data/itemSong';
 import {RootStackParamList} from '../../../nav/RootStack';
+import Txt from '../../../components/Txt';
 // @ts-ignore
 // import localTrack from './main/resources/slide.m4a';
 
@@ -132,7 +134,7 @@ const Music = ({navigation}: Props) => {
   }, []);
 
   return (
-    <SafeAreaView style={styles.screenContainer}>
+    <Container style={styles.screenContainer}>
       <View row marginT-35>
         <TouchableOpacity
           style={styles.close}
@@ -177,14 +179,14 @@ const Music = ({navigation}: Props) => {
           }}
         />
         <View style={styles.progressLabelContainer}>
-          <Text style={styles.progressLabelText}>
+          <Txt style={styles.progressLabelText}>
             {new Date(progress.position * 1000).toISOString().substr(14, 5)}
-          </Text>
-          <Text style={styles.progressLabelText}>
+          </Txt>
+          <Txt style={styles.progressLabelText}>
             {new Date((progress.duration - progress.position) * 1000)
               .toISOString()
               .substr(14, 5)}
-          </Text>
+          </Txt>
         </View>
       </View>
 
@@ -213,7 +215,7 @@ const Music = ({navigation}: Props) => {
           />
         </TouchableOpacity>
       </View>
-    </SafeAreaView>
+    </Container>
   );
 };
 
@@ -221,7 +223,7 @@ const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: Colors.textColor3,
+    // backgroundColor: Colors.textColor3,
   },
   bg: {
     alignSelf: 'center',
@@ -300,7 +302,7 @@ const styles = StyleSheet.create({
     // backgroundColor: 'yellow',
   },
   progressLabelText: {
-    color: Colors.textColor,
+    // color: Colors.textColor,
     fontVariant: ['tabular-nums'],
   },
   actionRowContainer: {
@@ -314,135 +316,3 @@ const styles = StyleSheet.create({
 });
 
 export default Music;
-
-//   return (
-//     <View flex>
-//       <Image assetGroup="WelcomeSleep" assetName="bg" style={styles.bg} />
-//       <View flex row marginT-35>
-//         <TouchableOpacity
-//           style={styles.close}
-//           onPress={() => {
-//             navigation.goBack();
-//           }}>
-//           <Image assetGroup="icons" assetName="x" />
-//         </TouchableOpacity>
-
-//         <View flex row right>
-//           <TouchableOpacity style={styles.like}>
-//             <Image assetGroup="icons" assetName="Heart" />
-//           </TouchableOpacity>
-
-//           <TouchableOpacity style={styles.download}>
-//             <Image assetGroup="icons" assetName="Down" />
-//           </TouchableOpacity>
-//         </View>
-//       </View>
-
-//       <View flex marginL-15 marginT-30>
-//         <View marginT-40 center>
-//           <Text b34 textColor4 marginB-10>
-//             Night Island
-//           </Text>
-//           <Text m14 textColor7>
-//             SLEEP MUSIC
-//           </Text>
-//         </View>
-//       </View>
-
-//       <View flex>
-//         <View row flex style={styles.viewplay}>
-//           <TouchableOpacity>
-//             <Image assetGroup="playicons" assetName="back15" />
-//           </TouchableOpacity>
-
-//           <TouchableOpacity style={styles.pause}>
-//             <Image assetGroup="playicons" assetName="pause" />
-//           </TouchableOpacity>
-
-//           <TouchableOpacity>
-//             <Image assetGroup="playicons" assetName="next15" />
-//           </TouchableOpacity>
-//         </View>
-
-//         {/* slider */}
-//         <View flex>
-//           <Slider
-//             style={styles.slider}
-//             value={10}
-//             minimumValue={0}
-//             maximumValue={100}
-//             thumbTintColor="#8E97FD"
-//             minimumTrackTintColor="#E6E7F2"
-//             maximumTrackTintColor="#3F414E"
-//             onSlidingComplete={() => {}}
-//           />
-//           <View row style={styles.time}>
-//             <Text textColor4>1:00</Text>
-//             <Text textColor4>4:30</Text>
-//           </View>
-//         </View>
-//       </View>
-//     </View>
-//   );
-// };
-
-// export default Music;
-
-// // const styles = StyleSheet.create({
-// //   bg: {
-// //     alignSelf: 'center',
-// //     position: 'absolute',
-// //     resizeMode: 'stretch',
-// //     width: width,
-// //     height: height,
-// //   },
-// //   close: {
-// //     width: 55,
-// //     height: 55,
-// //     backgroundColor: Colors.bgColor1,
-// //     justifyContent: 'center',
-// //     alignItems: 'center',
-// //     borderRadius: 55 / 2,
-// //     marginLeft: 20,
-// //   },
-// //   like: {
-// //     width: 55,
-// //     height: 55,
-// //     backgroundColor: Colors.textColor6,
-// //     justifyContent: 'center',
-// //     alignItems: 'center',
-// //     borderRadius: 55 / 2,
-// //     marginRight: 10,
-// //   },
-// //   download: {
-// //     width: 55,
-// //     height: 55,
-// //     backgroundColor: Colors.textColor6,
-// //     justifyContent: 'center',
-// //     alignItems: 'center',
-// //     borderRadius: 55 / 2,
-// //     marginRight: 10,
-// //   },
-// //   pause: {
-// //     width: 55,
-// //     height: 55,
-// //     backgroundColor: Colors.textColor6,
-// //     justifyContent: 'center',
-// //     alignItems: 'center',
-// //     borderRadius: 55 / 2,
-// //     marginRight: 70,
-// //     marginLeft: 70,
-// //   },
-// //   viewplay: {justifyContent: 'center'},
-// //   slider: {
-// //     width: 340,
-// //     height: 40,
-// //     flexDirection: 'row',
-// //     alignSelf: 'center',
-// //   },
-// //   time: {
-// //     width: 340,
-// //     justifyContent: 'space-between',
-// //     marginLeft: 30,
-// //   },
-// // });

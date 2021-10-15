@@ -38,8 +38,8 @@ const RootStack = () => {
           name="WelcomeSleep"
           component={WelcomeSleep}
           options={{headerShown: false}}
-        />
-        <Stack.Screen
+        /> */}
+        {/* <Stack.Screen
           name="Music"
           component={Music}
           options={{headerShown: false}}

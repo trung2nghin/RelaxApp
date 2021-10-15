@@ -34,7 +34,8 @@ const MainTab = () => {
           height: 70,
           ...stlyes.shadow,
         },
-      }}>
+      }}
+      >
       <Tab.Screen
         name="Home"
         component={Home}

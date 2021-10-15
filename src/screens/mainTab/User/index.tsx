@@ -1,14 +1,17 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React from 'react';
+import {StyleSheet, Text, View} from 'react-native';
+import ButtonUpdateTheme from './ButtonUpdateTheme';
+import Container from '../../../components/Container';
+import Txt from '../../../components/Txt';
 
 const User = () => {
-    return (
-        <View>
-            <Text>User</Text>
-        </View>
-    )
-}
+  return (
+    <Container>
+      <ButtonUpdateTheme />
+    </Container>
+  );
+};
 
-export default User
+export default User;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

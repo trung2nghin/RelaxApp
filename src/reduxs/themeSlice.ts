@@ -6,14 +6,14 @@ export interface ITheme {
   isThemeLight: boolean;
 }
 export const lightTheme: ITheme = {
-  backgroundColor: '#FFF',
-  color: '#000',
+  backgroundColor: '#E5E5E5',
+  color: '#0b1224',
   isThemeLight: true,
 };
 
 export const darkTheme: ITheme = {
-  backgroundColor: '#000',
-  color: '#FFF',
+  backgroundColor: '#0b1224',
+  color: '#E5E5E5',
   isThemeLight: false,
 };
 const initValue: ITheme = lightTheme;
