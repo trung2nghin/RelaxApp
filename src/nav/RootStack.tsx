@@ -24,7 +24,7 @@ const RootStack = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/* <Stack.Screen
+        <Stack.Screen
           name="SignIn"
           component={SignIn}
           options={{headerShown: false}}
@@ -33,27 +33,27 @@ const RootStack = () => {
           name="SignUp"
           component={SignUp}
           options={{headerShown: false}}
-        /> */}
+        />
         {/* <Stack.Screen
           name="WelcomeSleep"
           component={WelcomeSleep}
           options={{headerShown: false}}
         /> */}
-        {/* <Stack.Screen
+        <Stack.Screen
           name="Music"
           component={Music}
           options={{headerShown: false}}
-        /> */}
+        />
         <Stack.Screen
           name="MainTab"
           component={MainTab}
           options={{headerShown: false}}
         />
-        <Stack.Screen
+        {/* <Stack.Screen
           name="SleepMusic"
           component={SleepMusic}
           options={{headerShown: false}}
-        />
+        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

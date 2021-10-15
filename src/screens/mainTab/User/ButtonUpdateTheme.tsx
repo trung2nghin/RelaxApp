@@ -11,7 +11,7 @@ const ButtonUpdateTheme = () => {
   const dispatch = useDispatch<AppDispatch>();
   return (
     <Button
-      title="Cập nhật Theme"
+      title="Update Theme"
       onPress={() => {
         if (isThemeLight) {
           dispatch(onUpdateTheme(darkTheme));

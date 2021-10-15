@@ -2,8 +2,19 @@ import React, {useState} from 'react';
 import {StyleSheet, TouchableOpacity, TextInput} from 'react-native';
 import {Colors, Image, View, Text, Checkbox} from 'react-native-ui-lib';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {RootStackParamList} from '../../nav/RootStack';
+import {StackNavigationProp} from '@react-navigation/stack';
 
-const SignUp = () => {
+type SignUpScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'SignUp'
+>;
+
+type Props = {
+  navigation: SignUpScreenNavigationProp;
+};
+
+const SignUp = ({navigation}: Props) => {
   const [text, onChangeText] = React.useState('');
   const [mail, onChangeMail] = React.useState('');
   const [pass, onChangePass] = React.useState('');
@@ -127,7 +138,7 @@ const SignUp = () => {
           </View>
 
           <View center marginB-12>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('MainTab')}>
               <View
                 width={350}
                 height={55}
@@ -140,7 +151,6 @@ const SignUp = () => {
               </View>
             </TouchableOpacity>
           </View>
-
         </View>
       </View>
     </View>
