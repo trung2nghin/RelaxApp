@@ -10,7 +10,7 @@ import {Colors, Text, View, Image} from 'react-native-ui-lib';
 import RowList from './RowList';
 import {RootStackParamList} from '../../../nav/RootStack';
 import {StackNavigationProp} from '@react-navigation/stack';
-import urls from '../../../config/Api'; 
+import urls from '../../../config/Api';
 import {ISong} from '../../../data/itemSong';
 
 type SleepMusicScreenNavigationProp = StackNavigationProp<
@@ -56,56 +56,31 @@ const SleepMusic = ({navigation}: Props) => {
   return (
     <View backgroundColor={Colors.bgColor2} flex>
       {/* image */}
-      <View flex>
-        <TouchableOpacity
-          style={styles.back}
-          onPress={() => {
-            navigation.goBack();
-          }}>
-          <Image assetGroup="icons" assetName="Back" />
-        </TouchableOpacity>
-        <Image assetGroup="SleepMusic" assetName="header" style={styles.bg} />
-      </View>
-
-      {/* info */}
-      <View height={155} width={width - 48} paddingT-20 marginL-24>
+      <View style={{alignItems: 'center', marginTop: 16}}>
         <Text b28 color="white">
-          Night Music
-        </Text>
-        <Text m14 textColor7 marginT-10>
-          45 Min - Sleep Music
-        </Text>
-        <Text r18 textColor7 marginT-10>
-          Ease the mind into a restful night’s sleep with {'\n'}these deep,
-          amblent tones.
-        </Text>
-        <Text color="white" numberOfLines={1}>
-          ____________________________________________________
+          Sleep Music
         </Text>
       </View>
 
       {/* related button */}
       <View flex>
-        <Text b24 color="white" marginL-24>
-          Related
-        </Text>
         <FlatList
-          horizontal
+          style={{marginTop: 16}}
           data={data}
+          numColumns={2}
           keyExtractor={({id}, index) => id}
           renderItem={({item}) => (
-            <View>
+            <View padding-10>
               <TouchableOpacity
                 onPress={() => {
                   return navigation.navigate('Music');
                 }}>
                 <Image
-                  style={{width: 177, height: 122}}
+                  style={{width: 177, height: 122, borderRadius: 20}}
                   source={{uri: `${item.artwork}`}}
                 />
                 <Text color="white">
-                  {item.title} {'\n'}
-                  {item.artist}
+                  {item.title} {'\n'} {item.duration}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -119,7 +94,7 @@ const SleepMusic = ({navigation}: Props) => {
             title={''}
           />
         </ScrollView> */}
-        <View style={styles.viewbtn}>
+        {/* <View style={styles.viewbtn}>
           <TouchableOpacity
             style={styles.playbtn}
             onPress={() => {
@@ -129,7 +104,7 @@ const SleepMusic = ({navigation}: Props) => {
               PLAY
             </Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
       </View>
     </View>
   );
