@@ -12,7 +12,7 @@ const Container = ({children, style}: Props) => {
   const backgroundColor = useSelector<RootState, string>(
     state => state.theme.backgroundColor,
   );
-
+  
   return (
     <View style={{flex: 1, backgroundColor: backgroundColor, ...style}}>
       {children}

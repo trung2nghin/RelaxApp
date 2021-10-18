@@ -111,7 +111,7 @@ const Home = () => {
             </View>
           )}
         />
-        <View height={90}></View>
+        {/* <View height={90}></View> */}
       </ScrollView>
       </Container>
     // </View>

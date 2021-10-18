@@ -7,6 +7,8 @@ import Music from '../screens/mainTab/Music';
 import Sleep from '../screens/mainTab/Sleep/TrackList';
 import User from '../screens/mainTab/User';
 import {Image, Colors} from 'react-native-ui-lib';
+import {useSelector} from 'react-redux';
+import {RootState} from '../reduxs/store';
 
 export type MainTabParamList = {
   Home: undefined;
@@ -18,6 +20,9 @@ export type MainTabParamList = {
 
 const Tab = createBottomTabNavigator();
 const MainTab = () => {
+  const isThemeLight = useSelector<RootState, boolean>(
+    state => state.theme.isThemeLight,
+  );
   return (
     <Tab.Navigator
       screenOptions={{
@@ -25,17 +30,16 @@ const MainTab = () => {
         tabBarActiveTintColor: Colors.primary,
         tabBarShowLabel: false,
         tabBarStyle: {
-          position: 'absolute',
-          bottom: 16,
-          left: 20,
-          right: 20,
-          backgroundColor: '#FFF',
-          borderRadius: 30,
-          height: 70,
-          ...stlyes.shadow,
+          // position: 'absolute',
+          // bottom: 16,
+          // left: 20,
+          // right: 20,
+          backgroundColor: isThemeLight ? '#FFF' : '#1f1f1f',
+          // borderRadius: 30,
+          height: 60,
+          // ...stlyes.shadow,
         },
-      }}
-      >
+      }}>
       <Tab.Screen
         name="Home"
         component={Home}

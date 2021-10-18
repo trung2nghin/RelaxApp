@@ -5,14 +5,15 @@ export interface ITheme {
   color: string;
   isThemeLight: boolean;
 }
+
 export const lightTheme: ITheme = {
   backgroundColor: '#E5E5E5',
-  color: '#0b1224',
+  color: '#17151f',//#0b1224
   isThemeLight: true,
 };
 
 export const darkTheme: ITheme = {
-  backgroundColor: '#0b1224',
+  backgroundColor: '#17151f',
   color: '#E5E5E5',
   isThemeLight: false,
 };

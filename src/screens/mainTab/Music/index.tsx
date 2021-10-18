@@ -22,6 +22,8 @@ import TrackPlayer, {
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Container from '../../../components/Container';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../../reduxs/store';
 
 // @ts-ignore
 import playlistData from '../../../data/itemSong';
@@ -88,6 +90,10 @@ const Music = ({navigation}: Props) => {
   const [trackArtwork, setTrackArtwork] = useState<string | number>();
   const [trackTitle, setTrackTitle] = useState<string>();
   const [trackArtist, setTrackArtist] = useState<string>();
+
+  const isThemeLight = useSelector<RootState, boolean>(
+    state => state.theme.isThemeLight,
+  );
 
   const repeatIcon = () => {
     if (repeatMode == 'off') {
@@ -173,7 +179,7 @@ const Music = ({navigation}: Props) => {
           maximumValue={progress.duration}
           thumbTintColor="#8E97FD"
           minimumTrackTintColor="#7583CA"
-          maximumTrackTintColor="#3F414E"
+          maximumTrackTintColor={isThemeLight ? Colors.textColor : Colors.bgColor1}
           onSlidingComplete={async value => {
             await TrackPlayer.seekTo(value);
           }}
@@ -193,7 +199,11 @@ const Music = ({navigation}: Props) => {
       <View style={styles.actionRowContainer}>
         <TouchableOpacity onPress={() => TrackPlayer.skipToPrevious()}>
           {/* <Image assetGroup="playicons" assetName="back15" /> */}
-          <Ionicons name="play-skip-back" size={35} color={Colors.textColor} />
+          <Ionicons
+            name="play-skip-back"
+            size={35}
+            color={isThemeLight ? Colors.textColor : Colors.bgColor1}
+          />
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => togglePlayback(playbackState)}>
@@ -204,14 +214,16 @@ const Music = ({navigation}: Props) => {
                 : 'ios-play-circle-outline'
             }
             size={90}
-            color={Colors.textColor}></Ionicons>
+            color={
+              isThemeLight ? Colors.textColor : Colors.bgColor1
+            }></Ionicons>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => TrackPlayer.skipToNext()}>
           <Ionicons
             name="play-skip-forward"
             size={35}
-            color={Colors.textColor}
+            color={isThemeLight ? Colors.textColor : Colors.bgColor1}
           />
         </TouchableOpacity>
       </View>
