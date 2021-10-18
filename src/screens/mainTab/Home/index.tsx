@@ -113,7 +113,7 @@ const Home = () => {
         />
         <View height={90}></View>
       </ScrollView>
-      </Container>
+    </Container>
     // </View>
   );
 };

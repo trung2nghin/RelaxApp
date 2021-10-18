@@ -24,18 +24,17 @@ const MainTab = () => {
         headerShown: false,
         tabBarActiveTintColor: Colors.primary,
         tabBarShowLabel: false,
-        tabBarStyle: {
-          position: 'absolute',
-          bottom: 16,
-          left: 20,
-          right: 20,
-          backgroundColor: '#FFF',
-          borderRadius: 30,
-          height: 70,
-          ...stlyes.shadow,
-        },
-      }}
-      >
+        // tabBarStyle: {
+        //   position: 'absolute',
+        //   bottom: 16,
+        //   left: 20,
+        //   right: 20,
+        //   backgroundColor: '#FFF',
+        //   borderRadius: 30,
+        //   height: 70,
+        //   ...stlyes.shadow,
+        // },
+      }}>
       <Tab.Screen
         name="Home"
         component={Home}
