@@ -19,9 +19,9 @@ import {useSelector} from 'react-redux';
 import {RootState} from '../../../reduxs/store';
 
 // @ts-ignore
-import itemSong from '../../../data/itemSong';
 import {RootStackParamList} from '../../../nav/RootStack';
 import Txt from '../../../components/Txt';
+import {RouteProp, useRoute} from '@react-navigation/native';
 // @ts-ignore
 // import localTrack from './main/resources/slide.m4a';
 
@@ -40,7 +40,7 @@ const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
 // {
-const setupIfNecessary = async () => {
+const setupIfNecessary = async data => {
   // if app was relaunched and music was already playing, we don't setup again.
   const currentTrack = await TrackPlayer.getCurrentTrack();
   if (currentTrack !== null) {
@@ -59,7 +59,7 @@ const setupIfNecessary = async () => {
     compactCapabilities: [Capability.Play, Capability.Pause],
   });
 
-  await TrackPlayer.add(itemSong);
+  await TrackPlayer.add(data);
 
   TrackPlayer.setRepeatMode(RepeatMode.Queue);
 };
@@ -78,6 +78,9 @@ const togglePlayback = async (playbackState: State) => {
 };
 
 const Music = ({navigation}: Props) => {
+  const route = useRoute<RouteProp<RootStackParamList, 'Music'>>();
+  console.log('route', route.params.listSong);
+
   const playbackState = usePlaybackState();
   const progress = useProgress();
   const [repeatMode, setRepeatMode] = useState('off');
@@ -130,8 +133,8 @@ const Music = ({navigation}: Props) => {
   });
 
   useEffect(() => {
-    setupIfNecessary();
-  }, []);
+    setupIfNecessary(route.params.listSong);
+  }, [route.params.listSong]);
 
   return (
     <Container style={styles.screenContainer}>

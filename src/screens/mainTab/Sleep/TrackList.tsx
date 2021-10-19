@@ -29,21 +29,10 @@ const SleepMusic = ({navigation}: Props) => {
     fetch(urls.song)
       .then(response => response.json())
       .then(songs => {
+        console.log('json', songs);
+
         setData(songs);
         setLoading(false);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }, []);
-
-  const onRefresh = React.useCallback(() => {
-    setIsRefresh(true);
-    fetch(urls.song)
-      .then(response => response.json())
-      .then(songs => {
-        setData(songs);
-        setIsRefresh(false);
       })
       .catch(error => {
         console.error(error);
