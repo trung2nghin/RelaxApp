@@ -1,17 +1,12 @@
 import React from 'react';
-import {
-  StyleSheet,
-  ScrollView,
-  Dimensions,
-  TouchableOpacity,
-  FlatList,
-} from 'react-native';
+import {StyleSheet, Dimensions, TouchableOpacity, FlatList} from 'react-native';
 import {Colors, Text, View, Image} from 'react-native-ui-lib';
-import RowList from './RowList';
 import {RootStackParamList} from '../../../nav/RootStack';
 import {StackNavigationProp} from '@react-navigation/stack';
 import urls from '../../../config/Api';
-import {ISong} from '../../../data/itemSong';
+import itemSong, {ISong} from '../../../data/itemSong';
+import {RouteProp, useRoute} from '@react-navigation/core';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 
 type SleepMusicScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -24,6 +19,8 @@ type Props = {
 const width = Dimensions.get('window').width;
 
 const SleepMusic = ({navigation}: Props) => {
+  const {navigate} = useNavigation<NavigationProp<RootStackParamList>>();
+
   const [loading, setLoading] = React.useState<boolean>(true);
   const [data, setData] = React.useState<ISong[]>([]);
   const [isRefresh, setIsRefresh] = React.useState(false);
@@ -53,6 +50,16 @@ const SleepMusic = ({navigation}: Props) => {
       });
   }, []);
 
+  const onEndReached = React.useCallback(() => {
+    //check het data
+    // setData((prev: ISong[]) => prev.concat(itemSong));
+    // console.log('song', itemSong);
+  }, []);
+
+  const goPlaying = React.useCallback(() => {
+    navigate('Music', {listSong: data});
+  }, [data]);
+
   return (
     <View backgroundColor={Colors.bgColor2} flex>
       {/* image */}
@@ -68,13 +75,12 @@ const SleepMusic = ({navigation}: Props) => {
           style={{marginTop: 16}}
           data={data}
           numColumns={2}
-          keyExtractor={({id}, index) => id}
+          keyExtractor={(item, index) => index.toString()}
+          onEndReached={onEndReached}
+          refreshing={isRefresh}
           renderItem={({item}) => (
             <View padding-10>
-              <TouchableOpacity
-                onPress={() => {
-                  return navigation.navigate('Music');
-                }}>
+              <TouchableOpacity onPress={goPlaying}>
                 <Image
                   style={{width: 177, height: 122, borderRadius: 20}}
                   source={{uri: `${item.artwork}`}}
@@ -86,25 +92,6 @@ const SleepMusic = ({navigation}: Props) => {
             </View>
           )}
         />
-        {/* <ScrollView>
-          <RowList
-            onPress={() => {
-              return navigation.navigate('Music');
-            }}
-            title={''}
-          />
-        </ScrollView> */}
-        {/* <View style={styles.viewbtn}>
-          <TouchableOpacity
-            style={styles.playbtn}
-            onPress={() => {
-              navigation.navigate('Music');
-            }}>
-            <Text m16 textColor8>
-              PLAY
-            </Text>
-          </TouchableOpacity>
-        </View> */}
       </View>
     </View>
   );

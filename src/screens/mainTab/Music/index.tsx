@@ -1,12 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {
-  Dimensions,
-  StyleSheet,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  StatusBar,
-  SafeAreaView,
-} from 'react-native';
+import {Dimensions, StyleSheet, TouchableOpacity} from 'react-native';
 import {View, Text, Image, Colors} from 'react-native-ui-lib';
 import Slider from '@react-native-community/slider';
 import {StackNavigationProp} from '@react-navigation/stack';
@@ -26,7 +19,7 @@ import {useSelector} from 'react-redux';
 import {RootState} from '../../../reduxs/store';
 
 // @ts-ignore
-import playlistData from '../../../data/itemSong';
+import itemSong from '../../../data/itemSong';
 import {RootStackParamList} from '../../../nav/RootStack';
 import Txt from '../../../components/Txt';
 // @ts-ignore
@@ -41,6 +34,8 @@ type Props = {
   navigation: MusicScreenNavigationProp;
 };
 
+export type TStatusSound = 'playing' | 'pause' | 'loading';
+
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
@@ -51,7 +46,6 @@ const setupIfNecessary = async () => {
   if (currentTrack !== null) {
     return;
   }
-
   await TrackPlayer.setupPlayer({});
   await TrackPlayer.updateOptions({
     stopWithApp: false,
@@ -65,7 +59,7 @@ const setupIfNecessary = async () => {
     compactCapabilities: [Capability.Play, Capability.Pause],
   });
 
-  await TrackPlayer.add(playlistData);
+  await TrackPlayer.add(itemSong);
 
   TrackPlayer.setRepeatMode(RepeatMode.Queue);
 };
@@ -172,6 +166,7 @@ const Music = ({navigation}: Props) => {
         <Text m14 textColor7>
           {trackArtist}
         </Text>
+
         <Slider
           style={styles.progressContainer}
           value={progress.position}
@@ -179,7 +174,9 @@ const Music = ({navigation}: Props) => {
           maximumValue={progress.duration}
           thumbTintColor="#8E97FD"
           minimumTrackTintColor="#7583CA"
-          maximumTrackTintColor={isThemeLight ? Colors.textColor : Colors.bgColor1}
+          maximumTrackTintColor={
+            isThemeLight ? Colors.textColor : Colors.bgColor1
+          }
           onSlidingComplete={async value => {
             await TrackPlayer.seekTo(value);
           }}
@@ -198,7 +195,6 @@ const Music = ({navigation}: Props) => {
 
       <View style={styles.actionRowContainer}>
         <TouchableOpacity onPress={() => TrackPlayer.skipToPrevious()}>
-          {/* <Image assetGroup="playicons" assetName="back15" /> */}
           <Ionicons
             name="play-skip-back"
             size={35}

@@ -1,8 +1,8 @@
 export interface ISong {
+  url: string;
   title: string;
   artist: string;
   artwork: string;
-  url: string;
   duration: number;
 }
 
@@ -19,8 +19,7 @@ const itemSong: ISong[] = [
     url: 'https://drive.google.com/uc?export=download&id=1QAw6qmQTY70Or9AAOT-UC1ol4MYCCVXr',
     title: 'Cash Out',
     artist: 'Calvin Harris ft. ScHoolboy Q, PARTYNEXTDOOR, D.R.A.M.',
-    artwork:
-      'https://i1.sndcdn.com/artworks-000199018009-9wxvur-t500x500.jpg',
+    artwork: 'https://i1.sndcdn.com/artworks-000199018009-9wxvur-t500x500.jpg',
     duration: 237,
   },
   {
@@ -37,6 +36,13 @@ const itemSong: ISong[] = [
     artist: 'AlunaGeorge, DJ Snake',
     artwork: 'https://i.scdn.co/image/ab67616d0000b273586da93a803e867ab6842cda',
     duration: 304,
+  },
+  {
+    url: 'https://drive.google.com/uc?export=download&id=1DWut0G9FIy7gJxmlT-paZctpZxw6rJHi',
+    title: 'Boys',
+    artist: 'Charli XCX',
+    artwork: 'https://i.scdn.co/image/ab67616d0000b273eb4121feca968298ac9e2720',
+    duration: 250,
   },
 ];
 
