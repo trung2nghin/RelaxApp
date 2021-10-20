@@ -6,6 +6,7 @@ import {Text, View, Image} from 'react-native-ui-lib';
 import Container from '../../../components/Container';
 import Txt from '../../../components/Txt';
 import {RootStackParamList} from '../../../nav/RootStack';
+import ShortPlaying from '../User/ShortPlaying';
 
 type MeditateScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -47,12 +48,10 @@ const Meditate = ({navigation}: Props) => {
   return (
     <Container>
       <View flex>
-        <View style={{alignItems: 'center'}}>
-          <Txt b28 marginT-10>
-            Meditate
-          </Txt>
-          <Txt l16 marginT-10 style={{alignItems: 'center'}}>
-            we can learn how to recognize when our minds{'\n'} are doing their
+        <View marginL-16 marginT-30>
+          <Txt b30>Meditate</Txt>
+          <Txt l20>
+            We can learn how to recognize when our minds{'\n'}are doing their
             normal everyday acrobatics.
           </Txt>
         </View>
@@ -77,6 +76,7 @@ const Meditate = ({navigation}: Props) => {
           )}
         />
       </View>
+      <ShortPlaying />
     </Container>
   );
 };

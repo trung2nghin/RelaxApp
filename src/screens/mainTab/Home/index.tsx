@@ -6,9 +6,10 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
-import {Text, View, Colors} from 'react-native-ui-lib';
+import {Text, View} from 'react-native-ui-lib';
 import Container from '../../../components/Container';
 import Txt from '../../../components/Txt';
+import ShortPlaying from '../User/ShortPlaying';
 
 const data = [
   {
@@ -113,6 +114,7 @@ const Home = () => {
         />
         {/* <View height={90}></View> */}
       </ScrollView>
+      <ShortPlaying />
     </Container>
     // </View>
   );

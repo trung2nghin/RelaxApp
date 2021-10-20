@@ -42,7 +42,7 @@ Typography.loadTypographies({
   //
   m14: {
     fontSize: 14,
-    lineHeight: 15,
+    lineHeight: 16,
     fontFamily: FONTS.Medium,
   },
   m16: {
@@ -74,11 +74,18 @@ Typography.loadTypographies({
   b14: {
     fontSize: 14,
     lineHeight: 15,
+    fontWeight: 'bold',
     fontFamily: FONTS.Bold,
   },
   b16: {
     fontSize: 16,
-    lineHeight: 27,
+    lineHeight: 17,
+    fontWeight: 'bold',
+    fontFamily: FONTS.Bold,
+  },
+  b18: {
+    fontSize: 18,
+    lineHeight: 20,
     fontFamily: FONTS.Bold,
   },
   b24: {

@@ -1,9 +1,11 @@
 import {configureStore} from '@reduxjs/toolkit';
 import theme from './themeSlice';
+import status from './statusSlice'
 
 const store = configureStore({
   reducer: {
     theme,
+    status
   },
 });
 

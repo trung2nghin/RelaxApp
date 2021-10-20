@@ -12,6 +12,11 @@ import {RootStackParamList} from '../../../nav/RootStack';
 import {StackNavigationProp} from '@react-navigation/stack';
 import urls from '../../../config/Api';
 import {ISong} from '../../../data/itemSong';
+import Container from '../../../components/Container';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../../reduxs/store';
+import Txt from '../../../components/Txt';
+import ShortPlaying from '../User/ShortPlaying';
 
 type SleepMusicScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -27,7 +32,9 @@ const SleepMusic = ({navigation}: Props) => {
   const [loading, setLoading] = React.useState<boolean>(true);
   const [data, setData] = React.useState<ISong[]>([]);
   const [isRefresh, setIsRefresh] = React.useState(false);
-
+  const isThemeLight = useSelector<RootState, boolean>(
+    state => state.theme.isThemeLight,
+  );
   React.useEffect(() => {
     fetch(urls.song)
       .then(response => response.json())
@@ -54,12 +61,11 @@ const SleepMusic = ({navigation}: Props) => {
   }, []);
 
   return (
-    <View backgroundColor={Colors.bgColor2} flex>
+    <Container flex>
       {/* image */}
-      <View style={{alignItems: 'center', marginTop: 16}}>
-        <Text b28 color="white">
-          Sleep Music
-        </Text>
+      <View marginL-16 marginT-30>
+        <Txt b30>Sleep Music</Txt>
+        <Txt l20>We wish you have a good sleep</Txt>
       </View>
 
       {/* related button */}
@@ -76,37 +82,27 @@ const SleepMusic = ({navigation}: Props) => {
                   return navigation.navigate('Music');
                 }}>
                 <Image
-                  style={{width: 177, height: 122, borderRadius: 20}}
+                  style={{
+                    width: 177,
+                    height: 122,
+                    borderRadius: 10,
+                    borderColor: 'black',
+                  }}
                   source={{uri: `${item.artwork}`}}
                 />
-                <Text color="white">
-                  {item.title} {'\n'} {item.duration}
-                </Text>
+                <Txt center b16 marginT-8>
+                  {item.title}
+                </Txt>
+                <Txt center m14 marginT-2 textColor2>
+                  {item.duration} min
+                </Txt>
               </TouchableOpacity>
             </View>
           )}
         />
-        {/* <ScrollView>
-          <RowList
-            onPress={() => {
-              return navigation.navigate('Music');
-            }}
-            title={''}
-          />
-        </ScrollView> */}
-        {/* <View style={styles.viewbtn}>
-          <TouchableOpacity
-            style={styles.playbtn}
-            onPress={() => {
-              navigation.navigate('Music');
-            }}>
-            <Text m16 textColor8>
-              PLAY
-            </Text>
-          </TouchableOpacity>
-        </View> */}
       </View>
-    </View>
+      <ShortPlaying />
+    </Container>
   );
 };
 

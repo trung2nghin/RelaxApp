@@ -8,6 +8,7 @@ import Home from '../screens/StartScreen';
 import SignUp from '../screens/SignUp';
 import SignIn from '../screens/SignIn';
 import MainTab from './MainTab';
+import PlayingMusic from '../screens/mainTab/PlayingMusic';
 
 export type RootStackParamList = {
   SignIn: undefined;
@@ -18,6 +19,7 @@ export type RootStackParamList = {
   Home: undefined;
   MainTab: undefined;
   Meditate: undefined;
+  PlayingMusic: undefined
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -33,6 +35,11 @@ const RootStack = () => {
         <Stack.Screen
           name="SignUp"
           component={SignUp}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="PlayingMusic"
+          component={PlayingMusic}
           options={{headerShown: false}}
         />
         {/* <Stack.Screen

@@ -22,13 +22,14 @@ import TrackPlayer, {
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Container from '../../../components/Container';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../../reduxs/store';
 
 // @ts-ignore
 import playlistData from '../../../data/itemSong';
 import {RootStackParamList} from '../../../nav/RootStack';
 import Txt from '../../../components/Txt';
+import { onUpdatestatus } from '../../../reduxs/statusSlice';
 // @ts-ignore
 // import localTrack from './main/resources/slide.m4a';
 
@@ -83,6 +84,7 @@ const togglePlayback = async (playbackState: State) => {
   }
 };
 
+
 const Music = ({navigation}: Props) => {
   const playbackState = usePlaybackState();
   const progress = useProgress();
@@ -90,6 +92,25 @@ const Music = ({navigation}: Props) => {
   const [trackArtwork, setTrackArtwork] = useState<string | number>();
   const [trackTitle, setTrackTitle] = useState<string>();
   const [trackArtist, setTrackArtist] = useState<string>();
+
+  const dispatch = useDispatch();
+  const isPlaying = useSelector<RootState, boolean>(
+    state => state.status.isPlaying,
+  );
+  const viewPlaying = () => { 
+    dispatch(
+      dispatch(
+        onUpdatestatus({
+          isPlaying: !isPlaying,
+        }),
+      ),
+    );
+  };
+
+  const funcCombined = () => {
+    viewPlaying();
+    togglePlayback(playbackState)
+  }
 
   const isThemeLight = useSelector<RootState, boolean>(
     state => state.theme.isThemeLight,
@@ -147,18 +168,32 @@ const Music = ({navigation}: Props) => {
           onPress={() => {
             navigation.goBack();
           }}>
-          <Ionicons name="close" size={28} color={Colors.textColor} />
+          <Ionicons
+            name="arrow-down"
+            size={28}
+            color={isThemeLight ? Colors.textColor : Colors.bgColor1}
+          />
         </TouchableOpacity>
         <View flex row right>
           <TouchableOpacity style={styles.like}>
-            <Ionicons name="heart" size={28} color={Colors.textColor} />
+            <Ionicons
+              name="heart"
+              size={28}
+              color={isThemeLight ? Colors.textColor : Colors.bgColor1}
+            />
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.download} onPress={changeRepeatMode}>
             <MaterialCommunityIcons
               name={`${repeatIcon()}`}
               size={28}
-              color={repeatMode !== 'off' ? Colors.primary : Colors.textColor}
+              color={
+                repeatMode !== 'off'
+                  ? Colors.primary
+                  : isThemeLight
+                  ? Colors.textColor
+                  : Colors.bgColor1
+              }
             />
           </TouchableOpacity>
         </View>
@@ -166,9 +201,9 @@ const Music = ({navigation}: Props) => {
 
       <View style={styles.contentContainer}>
         <Image style={styles.artwork} source={{uri: `${trackArtwork}`}} />
-        <Text b34 textColor marginB-10>
+        <Txt b34 textColor marginB-10>
           {trackTitle}
-        </Text>
+        </Txt>
         <Text m14 textColor7>
           {trackArtist}
         </Text>
@@ -179,7 +214,9 @@ const Music = ({navigation}: Props) => {
           maximumValue={progress.duration}
           thumbTintColor="#8E97FD"
           minimumTrackTintColor="#7583CA"
-          maximumTrackTintColor={isThemeLight ? Colors.textColor : Colors.bgColor1}
+          maximumTrackTintColor={
+            isThemeLight ? Colors.textColor : Colors.bgColor1
+          }
           onSlidingComplete={async value => {
             await TrackPlayer.seekTo(value);
           }}
@@ -206,7 +243,8 @@ const Music = ({navigation}: Props) => {
           />
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => togglePlayback(playbackState)}>
+        {/* pause play */}
+        <TouchableOpacity onPress={() => funcCombined() }>
           <Ionicons
             name={
               playbackState === State.Playing
@@ -235,7 +273,6 @@ const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
     alignItems: 'center',
-    // backgroundColor: Colors.textColor3,
   },
   bg: {
     alignSelf: 'center',
@@ -245,14 +282,11 @@ const styles = StyleSheet.create({
     height: height,
   },
   contentContainer: {
-    // flex: 1,
     alignItems: 'center',
-    // backgroundColor: 'blue',
   },
   close: {
     width: 55,
     height: 55,
-    backgroundColor: Colors.bgColor1,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 55 / 2,
@@ -261,7 +295,6 @@ const styles = StyleSheet.create({
   like: {
     width: 55,
     height: 55,
-    backgroundColor: Colors.bgColor1,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 55 / 2,
@@ -270,7 +303,6 @@ const styles = StyleSheet.create({
   download: {
     width: 55,
     height: 55,
-    backgroundColor: Colors.bgColor1,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 55 / 2,
@@ -311,10 +343,8 @@ const styles = StyleSheet.create({
     width: 350,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    // backgroundColor: 'yellow',
   },
   progressLabelText: {
-    // color: Colors.textColor,
     fontVariant: ['tabular-nums'],
   },
   actionRowContainer: {
@@ -323,7 +353,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 100,
     justifyContent: 'space-between',
-    // backgroundColor: 'red',
   },
 });
 
