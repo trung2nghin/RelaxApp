@@ -1,12 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {
-  Dimensions,
-  StyleSheet,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  StatusBar,
-  SafeAreaView,
-} from 'react-native';
+import {Dimensions, StyleSheet, TouchableOpacity} from 'react-native';
 import {View, Text, Image, Colors} from 'react-native-ui-lib';
 import Slider from '@react-native-community/slider';
 import {StackNavigationProp} from '@react-navigation/stack';
@@ -26,10 +19,10 @@ import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../../reduxs/store';
 
 // @ts-ignore
-import playlistData from '../../../data/itemSong';
 import {RootStackParamList} from '../../../nav/RootStack';
 import Txt from '../../../components/Txt';
 import { onUpdatestatus } from '../../../reduxs/statusSlice';
+import {RouteProp, useRoute} from '@react-navigation/native';
 // @ts-ignore
 // import localTrack from './main/resources/slide.m4a';
 
@@ -42,17 +35,18 @@ type Props = {
   navigation: MusicScreenNavigationProp;
 };
 
+export type TStatusSound = 'playing' | 'pause' | 'loading';
+
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
 // {
-const setupIfNecessary = async () => {
+const setupIfNecessary = async data => {
   // if app was relaunched and music was already playing, we don't setup again.
   const currentTrack = await TrackPlayer.getCurrentTrack();
   if (currentTrack !== null) {
     return;
   }
-
   await TrackPlayer.setupPlayer({});
   await TrackPlayer.updateOptions({
     stopWithApp: false,
@@ -66,7 +60,7 @@ const setupIfNecessary = async () => {
     compactCapabilities: [Capability.Play, Capability.Pause],
   });
 
-  await TrackPlayer.add(playlistData);
+  await TrackPlayer.add(data);
 
   TrackPlayer.setRepeatMode(RepeatMode.Queue);
 };
@@ -86,6 +80,9 @@ const togglePlayback = async (playbackState: State) => {
 
 
 const Music = ({navigation}: Props) => {
+  const route = useRoute<RouteProp<RootStackParamList, 'Music'>>();
+  console.log('route', route.params.listSong);
+
   const playbackState = usePlaybackState();
   const progress = useProgress();
   const [repeatMode, setRepeatMode] = useState('off');
@@ -157,8 +154,8 @@ const Music = ({navigation}: Props) => {
   });
 
   useEffect(() => {
-    setupIfNecessary();
-  }, []);
+    setupIfNecessary(route.params.listSong);
+  }, [route.params.listSong]);
 
   return (
     <Container style={styles.screenContainer}>
@@ -207,6 +204,7 @@ const Music = ({navigation}: Props) => {
         <Text m14 textColor7>
           {trackArtist}
         </Text>
+
         <Slider
           style={styles.progressContainer}
           value={progress.position}
@@ -235,7 +233,6 @@ const Music = ({navigation}: Props) => {
 
       <View style={styles.actionRowContainer}>
         <TouchableOpacity onPress={() => TrackPlayer.skipToPrevious()}>
-          {/* <Image assetGroup="playicons" assetName="back15" /> */}
           <Ionicons
             name="play-skip-back"
             size={35}

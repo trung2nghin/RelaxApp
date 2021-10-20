@@ -1,21 +1,23 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import WelcomeSleep from '../screens/mainTab/Sleep/index';
 import Music from '../screens/mainTab/Music';
-import SleepMusic from '../screens/mainTab/Sleep/TrackList';
-import Home from '../screens/StartScreen';
 import SignUp from '../screens/SignUp';
 import SignIn from '../screens/SignIn';
 import MainTab from './MainTab';
+
 import PlayingMusic from '../screens/mainTab/PlayingMusic';
+import {ISong} from '../data/itemSong';
+
 
 export type RootStackParamList = {
   SignIn: undefined;
   SignUp: undefined;
   WelcomeSleep: undefined;
   SleepMusic: undefined;
-  Music: undefined;
+  Music: {
+    listSong: ISong[];
+  };
   Home: undefined;
   MainTab: undefined;
   Meditate: undefined;
@@ -23,6 +25,7 @@ export type RootStackParamList = {
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
+
 const RootStack = () => {
   return (
     <NavigationContainer>
@@ -57,11 +60,6 @@ const RootStack = () => {
           component={MainTab}
           options={{headerShown: false}}
         />
-        {/* <Stack.Screen
-          name="SleepMusic"
-          component={SleepMusic}
-          options={{headerShown: false}}
-        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
