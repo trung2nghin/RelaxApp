@@ -8,6 +8,7 @@ import TrackPlayer, {
   Event,
   RepeatMode,
   State,
+  Track,
   usePlaybackState,
   useProgress,
   useTrackPlayerEvents,
@@ -21,9 +22,10 @@ import {RootState} from '../../../reduxs/store';
 // @ts-ignore
 import {RootStackParamList} from '../../../nav/RootStack';
 import Txt from '../../../components/Txt';
-import { onUpdatestatus } from '../../../reduxs/statusSlice';
+import {onUpdatestatus} from '../../../reduxs/statusSlice';
 import {RouteProp, useRoute} from '@react-navigation/native';
 
+import itemSong, {ISong} from '../../../data/itemSong';
 // @ts-ignore
 // import localTrack from './main/resources/slide.m4a';
 
@@ -79,7 +81,6 @@ const togglePlayback = async (playbackState: State) => {
   }
 };
 
-
 const Music = ({navigation}: Props) => {
   const route = useRoute<RouteProp<RootStackParamList, 'Music'>>();
   // console.log('route', route.params.listSong);
@@ -95,7 +96,7 @@ const Music = ({navigation}: Props) => {
   const isPlaying = useSelector<RootState, boolean>(
     state => state.status.isPlaying,
   );
-  const viewPlaying = () => { 
+  const viewPlaying = () => {
     dispatch(
       dispatch(
         onUpdatestatus({
@@ -107,8 +108,8 @@ const Music = ({navigation}: Props) => {
 
   const funcCombined = () => {
     viewPlaying();
-    togglePlayback(playbackState)
-  }
+    togglePlayback(playbackState);
+  };
 
   const isThemeLight = useSelector<RootState, boolean>(
     state => state.theme.isThemeLight,
@@ -242,7 +243,7 @@ const Music = ({navigation}: Props) => {
         </TouchableOpacity>
 
         {/* pause play */}
-        <TouchableOpacity onPress={() => funcCombined() }>
+        <TouchableOpacity onPress={() => funcCombined()}>
           <Ionicons
             name={
               playbackState === State.Playing

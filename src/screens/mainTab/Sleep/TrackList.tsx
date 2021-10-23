@@ -4,7 +4,6 @@ import {Colors, Text, View, Image} from 'react-native-ui-lib';
 import {RootStackParamList} from '../../../nav/RootStack';
 import {StackNavigationProp} from '@react-navigation/stack';
 import urls from '../../../config/Api';
-
 import Container from '../../../components/Container';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../reduxs/store';
@@ -12,7 +11,6 @@ import Txt from '../../../components/Txt';
 import ShortPlaying from '../User/ShortPlaying';
 
 import itemSong, {ISong} from '../../../data/itemSong';
-import {RouteProp, useRoute} from '@react-navigation/core';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 
 type SleepMusicScreenNavigationProp = StackNavigationProp<
