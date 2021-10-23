@@ -30,14 +30,8 @@ const MainTab = () => {
         tabBarActiveTintColor: Colors.primary,
         tabBarShowLabel: false,
         tabBarStyle: {
-          // position: 'absolute',
-          // bottom: 16,
-          // left: 20,
-          // right: 20,
           backgroundColor: isThemeLight ? '#FFF' : '#1f1f1f',
-          // borderRadius: 30,
           height: 60,
-          // ...stlyes.shadow,
         },
       }}>
       <Tab.Screen

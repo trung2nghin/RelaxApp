@@ -1,5 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {Dimensions, StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  Dimensions,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import {View, Text, Image, Colors} from 'react-native-ui-lib';
 import Slider from '@react-native-community/slider';
 import {StackNavigationProp} from '@react-navigation/stack';
@@ -43,6 +48,20 @@ const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
 // {
+
+const togglePlayback = async (playbackState: State) => {
+  const currentTrack = await TrackPlayer.getCurrentTrack();
+  if (currentTrack == null) {
+    // TODO: Perhaps present an error or restart the playlist?
+  } else {
+    if (playbackState === State.Paused) {
+      await TrackPlayer.play();
+    } else {
+      await TrackPlayer.pause();
+    }
+  }
+};
+
 const setupIfNecessary = async data => {
   // if app was relaunched and music was already playing, we don't setup again.
   const currentTrack = await TrackPlayer.getCurrentTrack();
@@ -67,22 +86,9 @@ const setupIfNecessary = async data => {
   TrackPlayer.setRepeatMode(RepeatMode.Queue);
 };
 
-const togglePlayback = async (playbackState: State) => {
-  const currentTrack = await TrackPlayer.getCurrentTrack();
-  if (currentTrack == null) {
-    // TODO: Perhaps present an error or restart the playlist?
-  } else {
-    if (playbackState === State.Paused) {
-      await TrackPlayer.play();
-    } else {
-      await TrackPlayer.pause();
-    }
-  }
-};
-
 const Music = ({navigation}: Props) => {
   const route = useRoute<RouteProp<RootStackParamList, 'Music'>>();
-  console.log('route', route.params.listSong);
+  console.log('route', route.params?.listSong);
 
   const playbackState = usePlaybackState();
   const progress = useProgress();
@@ -155,8 +161,8 @@ const Music = ({navigation}: Props) => {
   });
 
   useEffect(() => {
-    setupIfNecessary(route.params.listSong);
-  }, [route.params.listSong]);
+    setupIfNecessary(route.params?.listSong);
+  }, [route.params?.listSong]);
 
   return (
     <Container style={styles.screenContainer}>
@@ -202,9 +208,6 @@ const Music = ({navigation}: Props) => {
         <Txt b34 textColor marginB-10>
           {trackTitle}
         </Txt>
-        <Text m14 textColor7>
-          {trackArtist}
-        </Text>
 
         <Slider
           style={styles.progressContainer}
