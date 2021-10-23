@@ -29,6 +29,7 @@ import {RootStackParamList} from '../../../nav/RootStack';
 import Txt from '../../../components/Txt';
 import {onUpdatestatus} from '../../../reduxs/statusSlice';
 import {RouteProp, useRoute} from '@react-navigation/native';
+
 import itemSong, {ISong} from '../../../data/itemSong';
 // @ts-ignore
 // import localTrack from './main/resources/slide.m4a';
@@ -161,7 +162,7 @@ const Music = ({navigation}: Props) => {
   });
 
   useEffect(() => {
-    setupIfNecessary(route.params?.listSong);
+    setupIfNecessary(route.params.listSong);
   }, [route.params?.listSong]);
 
   return (

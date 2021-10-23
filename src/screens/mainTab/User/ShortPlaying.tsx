@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {StyleSheet, View, Button, Animated, Dimensions} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../../reduxs/store';
@@ -49,15 +49,14 @@ const ShortPlaying = ({}) => {
   return (
     <Animated.View
       style={{
-        position: 'absolute',
         width: '100%',
-        height: 70,
+        height: isPlaying ? 70 : 0,
         backgroundColor: 'blue',
         bottom: 0,
         flexDirection: 'row',
         padding: 8,
         opacity,
-        transform: [{translateX: tranX},{translateY: tranY}],
+        transform: [{translateX: tranX}, {translateY: tranY}],
       }}>
       <View
         style={{
@@ -77,6 +76,6 @@ const ShortPlaying = ({}) => {
     </Animated.View>
   );
 };
-export default ShortPlaying
+export default ShortPlaying;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});
