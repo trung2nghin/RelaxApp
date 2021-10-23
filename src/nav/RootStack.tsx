@@ -3,12 +3,12 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Music from '../screens/mainTab/Music';
 import MainTab from './MainTab';
-
 import PlayingMusic from '../screens/mainTab/PlayingMusic';
 import {ISong} from '../data/itemSong';
+import WelcomeScreen from '../screens/StartScreen';
 
 export type RootStackParamList = {
-  WelcomeSleep: undefined;
+  WelcomeScreen: undefined;
   SleepMusic: undefined;
   Music: {
     listSong: ISong[];
@@ -26,6 +26,11 @@ const RootStack = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
+          name="WelcomeScreen"
+          component={WelcomeScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
           name="MainTab"
           component={MainTab}
           options={{headerShown: false}}
@@ -35,11 +40,7 @@ const RootStack = () => {
           component={PlayingMusic}
           options={{headerShown: false}}
         />
-        {/* <Stack.Screen
-          name="WelcomeSleep"
-          component={WelcomeSleep}
-          options={{headerShown: false}}
-        /> */}
+
         <Stack.Screen
           name="Music"
           component={Music}

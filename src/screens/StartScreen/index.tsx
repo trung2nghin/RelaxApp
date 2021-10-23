@@ -1,60 +1,49 @@
+import {NavigationProp, useNavigation} from '@react-navigation/core';
 import React from 'react';
-import {
-  Dimensions,
-  FlatList,
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native';
-import {Colors, Image, Text, View} from 'react-native-ui-lib';
-import RowList from './RowList';
+import {Image, StyleSheet, TouchableOpacity} from 'react-native';
+import {Text, View} from 'react-native-ui-lib';
+import Container from '../../components/Container';
+import Txt from '../../components/Txt';
+import {RootStackParamList} from '../../nav/RootStack';
 
-const width = Dimensions.get('window').width;
-const height = Dimensions.get('window').height;
-const Home = () => {
+const WelcomeScreen = () => {
+  const {navigate} = useNavigation<NavigationProp<RootStackParamList>>();
+
   return (
-    <View flex backgroundColor={Colors.bgColor2}>
-      <View>
-        <Image
-          assetGroup="WelcomeSleep"
-          assetName="welcomesleep"
-          style={styles.bg}
-        />
-      </View>
-      <View center marginT-50>
-        <Text b28 marginB-15 textColor4>
-          Sleep Stories
-        </Text>
-        <Text m16 textColor4>
-          Soothing bedtime stories to help you fall{'\n'}into a deep and natural
-          sleep
-        </Text>
-      </View>
+    <Container style={{backgroundColor: 'rgba(140, 150, 255, 1)'}}>
+      <View flex marginT-32>
+        <Txt marginT-32 m30 center>
+          Hi Afsar, Welcome to {'\n'} Silent Moon
+        </Txt>
+        <Txt l16 center marginT-24>
+          Explore the app, Find some peace of mind to {'\n'} prepare for
+          meditation.
+        </Txt>
+        <View center marginT-76>
+          <Image source={require('../../assets/med.png')} />
+        </View>
 
-      <TouchableOpacity>
-        <Image
-          source={require('../../assets/OceanMoon.png')}
-          marginH-10
-          marginT-16
-        />
-      </TouchableOpacity>
-      <View marginT-16>
-        <ScrollView>
-          <RowList title={''} />
-        </ScrollView>
+        <TouchableOpacity
+          style={{
+            backgroundColor: 'white',
+            height: 63,
+            width: 374,
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: 30,
+            alignSelf: 'center',
+            marginTop: 42,
+          }}
+          onPress={() => navigate('MainTab')}>
+          <Text color="grey" b16>
+            Get Started
+          </Text>
+        </TouchableOpacity>
       </View>
-    </View>
+    </Container>
   );
 };
 
-export default Home;
+export default WelcomeScreen;
 
-const styles = StyleSheet.create({
-  bg: {
-    alignSelf: 'center',
-    position: 'absolute',
-    width: width,
-    height: height,
-    resizeMode: 'stretch',
-  },
-});
+const styles = StyleSheet.create({});
