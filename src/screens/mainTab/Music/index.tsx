@@ -23,6 +23,7 @@ import {RootStackParamList} from '../../../nav/RootStack';
 import Txt from '../../../components/Txt';
 import { onUpdatestatus } from '../../../reduxs/statusSlice';
 import {RouteProp, useRoute} from '@react-navigation/native';
+
 // @ts-ignore
 // import localTrack from './main/resources/slide.m4a';
 
@@ -81,7 +82,7 @@ const togglePlayback = async (playbackState: State) => {
 
 const Music = ({navigation}: Props) => {
   const route = useRoute<RouteProp<RootStackParamList, 'Music'>>();
-  console.log('route', route.params.listSong);
+  // console.log('route', route.params.listSong);
 
   const playbackState = usePlaybackState();
   const progress = useProgress();
@@ -155,7 +156,7 @@ const Music = ({navigation}: Props) => {
 
   useEffect(() => {
     setupIfNecessary(route.params.listSong);
-  }, [route.params.listSong]);
+  }, [route.params?.listSong]);
 
   return (
     <Container style={styles.screenContainer}>
