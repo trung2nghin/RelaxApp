@@ -70,14 +70,14 @@ const MainTab = () => {
             />
           ),
         }}></Tab.Screen>
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Music"
         component={Music}
         options={{
           tabBarIcon: ({focused, color}) => (
             <Image assetGroup="iconsTab" assetName="Music" tintColor={color} />
           ),
-        }}></Tab.Screen>
+        }}></Tab.Screen> */}
 
       <Tab.Screen
         name="User"

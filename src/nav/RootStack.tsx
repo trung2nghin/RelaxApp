@@ -5,10 +5,8 @@ import Music from '../screens/mainTab/Music';
 import SignUp from '../screens/SignUp';
 import SignIn from '../screens/SignIn';
 import MainTab from './MainTab';
-
 import PlayingMusic from '../screens/mainTab/PlayingMusic';
 import {ISong} from '../data/itemSong';
-
 
 export type RootStackParamList = {
   SignIn: undefined;
@@ -21,7 +19,7 @@ export type RootStackParamList = {
   Home: undefined;
   MainTab: undefined;
   Meditate: undefined;
-  PlayingMusic: undefined
+  PlayingMusic: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();

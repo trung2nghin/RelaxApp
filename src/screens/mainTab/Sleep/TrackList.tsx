@@ -17,7 +17,7 @@ type SleepMusicScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
   'SleepMusic'
 >;
-
+ 
 type Props = {
   navigation: SleepMusicScreenNavigationProp;
 };

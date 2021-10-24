@@ -22,7 +22,12 @@ import {RootState} from '../../../reduxs/store';
 // @ts-ignore
 import {RootStackParamList} from '../../../nav/RootStack';
 import Txt from '../../../components/Txt';
-import {onUpdatestatus} from '../../../reduxs/statusSlice';
+import {
+  onUpdatestatus,
+  onUpdateCurrentSong,
+  onUpdateCurrentArtist,
+  onUpdateCurrentArtwork,
+} from '../../../reduxs/statusSlice';
 import {RouteProp, useRoute} from '@react-navigation/native';
 
 import itemSong, {ISong} from '../../../data/itemSong';
@@ -84,11 +89,10 @@ const togglePlayback = async (playbackState: State) => {
 const Music = ({navigation}: Props) => {
   const route = useRoute<RouteProp<RootStackParamList, 'Music'>>();
   // console.log('route', route.params.listSong);
-
   const playbackState = usePlaybackState();
   const progress = useProgress();
   const [repeatMode, setRepeatMode] = useState('off');
-  const [trackArtwork, setTrackArtwork] = useState<string | number>();
+  const [trackArtwork, setTrackArtwork] = useState<string>();
   const [trackTitle, setTrackTitle] = useState<string>();
   const [trackArtist, setTrackArtist] = useState<string>();
 
@@ -103,6 +107,24 @@ const Music = ({navigation}: Props) => {
           isPlaying: !isPlaying,
         }),
       ),
+    );
+
+    dispatch(
+      onUpdateCurrentSong({
+        currentSong: trackTitle,
+      }),
+    );
+
+    dispatch(
+      onUpdateCurrentArtist({
+        currentArtist: trackArtist,
+      }),
+    );
+
+    dispatch(
+      onUpdateCurrentArtwork({
+        currentArtwork: trackArtwork,
+      }),
     );
   };
 
@@ -200,9 +222,9 @@ const Music = ({navigation}: Props) => {
 
       <View style={styles.contentContainer}>
         <Image style={styles.artwork} source={{uri: `${trackArtwork}`}} />
-        <Txt b34 textColor marginB-10>
+        <Text b34 textColor marginB-10>
           {trackTitle}
-        </Txt>
+        </Text>
         <Text m14 textColor7>
           {trackArtist}
         </Text>
