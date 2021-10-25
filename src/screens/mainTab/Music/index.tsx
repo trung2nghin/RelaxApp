@@ -37,7 +37,6 @@ import {RouteProp, useRoute} from '@react-navigation/native';
 
 import itemSong, {ISong} from '../../../data/itemSong';
 // @ts-ignore
-// import localTrack from './main/resources/slide.m4a';
 
 type MusicScreenNavigationProp = StackNavigationProp<
   RootStackParamList,

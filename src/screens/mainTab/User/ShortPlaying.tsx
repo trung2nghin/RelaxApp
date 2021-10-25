@@ -6,6 +6,7 @@ import {
   Dimensions,
   TouchableOpacity,
   Image,
+  Easing,
 } from 'react-native';
 import {Text} from 'react-native-ui-lib';
 import {useSelector} from 'react-redux';
@@ -22,6 +23,7 @@ const ShortPlaying = ({}) => {
   const isPlaying = useSelector<RootState, boolean>(
     state => state.status.isPlaying,
   );
+
   const currentSong = useSelector<RootState, string>(
     state => state.status.currentSong,
   );
@@ -88,18 +90,12 @@ const ShortPlaying = ({}) => {
         style={{
           width: 50,
           height: 50,
-          alignItems:'center',
-          justifyContent: 'center'
+          alignItems: 'center',
+          justifyContent: 'center',
         }}>
-        <Image
+        <Animated.Image
           source={{uri: `${currentArtwork}`}}
-          style={{
-            width: 50,
-            height: 50,
-            borderRadius: 50,
-            borderColor:'rgba(0,0,0,0.3)',
-            borderWidth: 1
-          }}
+          style={styles.img}
         />
         <View
           style={{
@@ -109,7 +105,7 @@ const ShortPlaying = ({}) => {
             borderRadius: 50,
             backgroundColor: 'rgba(0,0,0,1)',
           }}></View>
-          <View
+        <View
           style={{
             position: 'absolute',
             width: 7,
@@ -117,7 +113,7 @@ const ShortPlaying = ({}) => {
             borderRadius: 50,
             backgroundColor: 'gray',
           }}></View>
-          <View
+        <View
           style={{
             position: 'absolute',
             width: 3,
@@ -134,8 +130,8 @@ const ShortPlaying = ({}) => {
             marginLeft: 16,
             // backgroundColor: '#FFF',
           }}>
-          <Txt m24 >{currentSong}</Txt>
-          <Txt >{currentArtist}</Txt>
+          <Txt m24>{currentSong}</Txt>
+          <Txt>{currentArtist}</Txt>
         </View>
       </TouchableOpacity>
     </Animated.View>
@@ -143,4 +139,12 @@ const ShortPlaying = ({}) => {
 };
 export default ShortPlaying;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  img: {
+    width: 50,
+    height: 50,
+    borderRadius: 50,
+    borderColor: 'rgba(0,0,0,0.3)',
+    borderWidth: 1,
+  },
+});
