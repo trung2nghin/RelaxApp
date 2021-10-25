@@ -12,14 +12,7 @@ const ButtonUpdateTheme = () => {
   const dispatch = useDispatch<AppDispatch>();
   return (
     <TouchableOpacity
-      style={{
-        width: 120,
-        height: 40,
-        backgroundColor: 'red',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 15,
-      }}
+      style={styles.btn}
       onPress={() => {
         if (isThemeLight) {
           dispatch(onUpdateTheme(darkTheme));
@@ -34,4 +27,24 @@ const ButtonUpdateTheme = () => {
 
 export default ButtonUpdateTheme;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  btn: {
+    backgroundColor: '#FFF',
+    width: 120,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 8,
+    margin: 18,
+    borderWidth: 1,
+    borderColor: '#E5E5E5',
+    shadowColor: 'rgb(90, 108, 234)',
+    shadowOffset: {
+      width: 0,
+      height: 0.5,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 50,
+    elevation: 3,
+  },
+});

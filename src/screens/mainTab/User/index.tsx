@@ -42,25 +42,35 @@ const User = () => {
   }, []);
   return (
     <Container>
-      <View style={{width: 70, height: 100}}>
-        <ButtonUpdateTheme />
-      </View>
       <ScrollView>
         <View flex>
           <Image
-            style={styles.image}
-            source={require('../../../assets/jane.png')}
+            style={{width: width, height: 300}}
+            source={require('../../../assets/avatar.png')}
           />
-          <View>
-            <Txt b24 style={{alignSelf: 'center', marginTop: 24}}>
-              Jane
+          <View style={{marginLeft: 16}}>
+            <Txt b30 style={{marginTop: 20}}>
+              Astra Zeneca
             </Txt>
-            <Txt b20 style={{alignSelf: 'center', marginTop: 16}}>
-              SAN FRANCISCO, CA
-            </Txt>
+            <Txt m16>SAN FRANCISCO, CA</Txt>
           </View>
-          <View flex>
-            <Txt b18 style={{marginTop: 16, marginLeft: 12}}>
+          <View
+            flex
+            style={{
+              borderRadius: 10,
+              backgroundColor: '#E5E5E5',
+              borderWidth: 1,
+              borderColor: '#E5E5E5',
+              shadowColor: 'rgb(90, 108, 234)',
+              shadowOffset: {
+                width: 0,
+                height: 0.5,
+              },
+              shadowOpacity: 0.1,
+              shadowRadius: 50,
+              elevation: 3,
+            }}>
+            <Txt black b24 marginH-12 marginT-24>
               Recently Played 🎧
             </Txt>
 
@@ -93,8 +103,25 @@ const User = () => {
               )}
             />
           </View>
-          <View flex>
-            <Txt b18 style={{marginTop: 16, marginLeft: 12}}>
+
+          <View
+            flex
+            style={{
+              marginTop: 10,
+              borderRadius: 10,
+              backgroundColor: '#E5E5E5',
+              borderWidth: 1,
+              borderColor: '#E5E5E5',
+              shadowColor: 'rgb(90, 108, 234)',
+              shadowOffset: {
+                width: 0,
+                height: 0.5,
+              },
+              shadowOpacity: 0.1,
+              shadowRadius: 50,
+              elevation: 3,
+            }}>
+            <Txt black b24 marginH-12 marginT-24>
               Favourite ❤
             </Txt>
 
@@ -128,20 +155,12 @@ const User = () => {
             />
           </View>
         </View>
+        <ButtonUpdateTheme />
       </ScrollView>
-      <ButtonUpdateTheme />
     </Container>
   );
 };
 
 export default User;
 
-const styles = StyleSheet.create({
-  image: {
-    width: 128,
-    height: 128,
-    alignSelf: 'center',
-    borderRadius: 100,
-    marginTop: 16,
-  },
-});
+const styles = StyleSheet.create({});

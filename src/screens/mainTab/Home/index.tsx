@@ -40,7 +40,6 @@ const data = [
 
 const Home = () => {
   return (
-    // <View backgroundColor={Colors.bgColor1}>
     <Container>
       <ScrollView>
         <View marginL-16 marginT-30>
@@ -63,63 +62,96 @@ const Home = () => {
           </TouchableOpacity>
         </View>
 
-        <View style={{marginHorizontal: 11, marginTop: 16}}>
-          <TouchableOpacity>
-            <Image source={require('../../../assets/Daily.png')} />
-          </TouchableOpacity>
+        <View style={styles.view}>
+          <View style={{marginHorizontal: 11, marginTop: 16}}>
+            <TouchableOpacity>
+              <Image source={require('../../../assets/Daily.png')} />
+            </TouchableOpacity>
+          </View>
+
+          <Txt black b24 marginH-12 marginT-24>
+            Sleep Music
+          </Txt>
+
+          <FlatList
+            horizontal
+            data={data}
+            keyExtractor={({id}, index) => id}
+            style={{marginTop: 16}}
+            showsHorizontalScrollIndicator={false}
+            renderItem={({item}) => (
+              <View style={{padding: 12}}>
+                <TouchableOpacity>
+                  <Image source={item.src} />
+                  <Text color="#A1A4B2">
+                    {item.title} / {item.time}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            )}
+          />
         </View>
 
-        <Txt black b24 marginH-12 marginT-24>
-          Sleep Music
-        </Txt>
+        <View style={styles.view2}>
+          <Txt black b24 marginH-12 marginT-24>
+            Meditate Music
+          </Txt>
 
-        <FlatList
-          horizontal
-          data={data}
-          keyExtractor={({id}, index) => id}
-          style={{marginTop: 16}}
-          showsHorizontalScrollIndicator={false}
-          renderItem={({item}) => (
-            <View style={{padding: 12}}>
-              <TouchableOpacity>
-                <Image source={item.src} />
-                <Text color="#A1A4B2">
-                  {item.title} / {item.time}
-                </Text>
-              </TouchableOpacity>
-            </View>
-          )}
-        />
-
-        <Txt black b24 marginH-12 marginT-24>
-          Meditate Music
-        </Txt>
-
-        <FlatList
-          horizontal
-          data={data}
-          keyExtractor={({id}, index) => id}
-          style={{marginTop: 16}}
-          showsHorizontalScrollIndicator={false}
-          renderItem={({item}) => (
-            <View style={{padding: 12}}>
-              <TouchableOpacity>
-                <Image source={item.src} />
-                <Text color="#A1A4B2">
-                  {item.title} / {item.time}
-                </Text>
-              </TouchableOpacity>
-            </View>
-          )}
-        />
-        {/* <View height={90}></View> */}
+          <FlatList
+            horizontal
+            data={data}
+            keyExtractor={({id}, index) => id}
+            style={{marginTop: 16}}
+            showsHorizontalScrollIndicator={false}
+            renderItem={({item}) => (
+              <View style={{padding: 12}}>
+                <TouchableOpacity>
+                  <Image source={item.src} />
+                  <Text color="#A1A4B2">
+                    {item.title} / {item.time}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            )}
+          />
+        </View>
       </ScrollView>
       <ShortPlaying />
     </Container>
-    // </View>
   );
 };
 
 export default Home;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  view: {
+    borderRadius: 10,
+    backgroundColor: '#E5E5E5',
+    borderWidth: 1,
+    borderColor: '#E5E5E5',
+    shadowColor: 'rgb(90, 108, 234)',
+    shadowOffset: {
+      width: 0,
+      height: 0.5,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 50,
+    elevation: 3,
+  },
+  view2: {
+    marginTop: 10,
+    marginBottom: 10,
+    borderRadius: 10,
+    backgroundColor: '#E5E5E5',
+    borderWidth: 1,
+    borderColor: '#E5E5E5',
+    shadowColor: 'rgb(90, 108, 234)',
+    shadowOffset: {
+      width: 0,
+      height: 0.5,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 50,
+    elevation: 3,
+  },
+});
