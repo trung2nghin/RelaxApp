@@ -17,6 +17,7 @@ export type RootStackParamList = {
   MainTab: undefined;
   Meditate: undefined;
   PlayingMusic: undefined;
+  ShortPlaying: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();

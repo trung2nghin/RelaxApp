@@ -11,12 +11,20 @@ import {
 import {Text} from 'react-native-ui-lib';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../reduxs/store';
-import {RouteProp, useRoute} from '@react-navigation/native';
 import Txt from '../../../components/Txt';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {RootStackParamList} from '../../../nav/RootStack';
+import {NavigationProp, useNavigation} from '@react-navigation/core';
 
 const width = Dimensions.get('window').width;
 
-const ShortPlaying = ({}) => {
+const ShortPlaying = () => {
+  const {navigate} = useNavigation<NavigationProp<RootStackParamList>>();
+
+  const goPlaying = React.useCallback(() => {
+    navigate('Music', {listSong: []});
+  }, []);
+
   const isThemeLight = useSelector<RootState, boolean>(
     state => state.theme.isThemeLight,
   );
@@ -122,7 +130,7 @@ const ShortPlaying = ({}) => {
             backgroundColor: 'rgba(0,0,0,1)',
           }}></View>
       </View>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={goPlaying}>
         <View
           style={{
             width: 310,

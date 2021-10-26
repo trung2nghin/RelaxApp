@@ -66,9 +66,9 @@ const SleepMusic = ({navigation}: Props) => {
       {/* related button */}
       <View flex>
         <FlatList
-          style={{marginTop: 16}}
+          style={{marginTop: 16, marginHorizontal: 16}}
           data={data}
-          horizontal
+          numColumns={2}
           keyExtractor={(item, index) => index.toString()}
           onEndReached={onEndReached}
           refreshing={isRefresh}
