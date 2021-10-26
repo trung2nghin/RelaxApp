@@ -136,7 +136,7 @@ const ShortPlaying = () => {
           }}></View>
       </View>
       <View style={{width: width * 0.55}}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={goPlaying}>
           <View
             style={{
               width: width * 0.5,
@@ -145,7 +145,15 @@ const ShortPlaying = () => {
               // backgroundColor: 'red',
             }}>
             <Txt m24>{currentSong}</Txt>
-            <Txt>{currentArtist}</Txt>
+            <TextTicker
+            style={{color: isThemeLight?"#000" : "#fff"}}
+              duration={10000}
+              loop
+              bounce
+              repeatSpacer={50}
+              marqueeDelay={1000}>
+              {currentArtist}
+            </TextTicker>
           </View>
         </TouchableOpacity>
       </View>
@@ -174,7 +182,7 @@ const ShortPlaying = () => {
           />
         </TouchableOpacity>
       </View>
-      <TouchableOpacity onPress={goPlaying}>
+      {/* <TouchableOpacity onPress={goPlaying}>
         <View
           style={{
             width: 310,
@@ -183,17 +191,9 @@ const ShortPlaying = () => {
             // backgroundColor: '#FFF',
           }}>
           <Txt m24>{currentSong}</Txt>
-          <TextTicker
-            duration={3000}
-            loop
-            bounce
-            repeatSpacer={50}
-            marqueeDelay={2000}>
-            Super long piece of text is long. The quick brown fox jumps over the
-            lazy dog.
-          </TextTicker>
+          <Txt>{currentSong}</Txt>
         </View>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </Animated.View>
   );
 };
