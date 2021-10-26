@@ -12,9 +12,9 @@ import {useSelector} from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {RootState} from '../../../reduxs/store';
 import Txt from '../../../components/Txt';
-import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../../nav/RootStack';
 import {NavigationProp, useNavigation} from '@react-navigation/core';
+import TextTicker from 'react-native-text-ticker';
 
 const width = Dimensions.get('window').width;
 
@@ -139,7 +139,7 @@ const ShortPlaying = () => {
         <TouchableOpacity>
           <View
             style={{
-              width: width*0.5,
+              width: width * 0.5,
               height: 50,
               marginLeft: 16,
               // backgroundColor: 'red',
@@ -183,7 +183,15 @@ const ShortPlaying = () => {
             // backgroundColor: '#FFF',
           }}>
           <Txt m24>{currentSong}</Txt>
-          <Txt>{currentArtist}</Txt>
+          <TextTicker
+            duration={3000}
+            loop
+            bounce
+            repeatSpacer={50}
+            marqueeDelay={2000}>
+            Super long piece of text is long. The quick brown fox jumps over the
+            lazy dog.
+          </TextTicker>
         </View>
       </TouchableOpacity>
     </Animated.View>

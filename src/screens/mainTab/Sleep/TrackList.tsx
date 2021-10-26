@@ -10,7 +10,7 @@ import {RootState} from '../../../reduxs/store';
 import Txt from '../../../components/Txt';
 import ShortPlaying from '../User/ShortPlaying';
 
-import itemSong, {ISong} from '../../../data/itemSong';
+import {ISong} from '../../../data/itemSong';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 
 type SleepMusicScreenNavigationProp = StackNavigationProp<
@@ -66,7 +66,7 @@ const SleepMusic = ({navigation}: Props) => {
       {/* related button */}
       <View flex>
         <FlatList
-          style={{marginTop: 16, marginHorizontal: 16}}
+          style={{marginTop: 16}}
           data={data}
           numColumns={2}
           keyExtractor={(item, index) => index.toString()}
@@ -80,7 +80,6 @@ const SleepMusic = ({navigation}: Props) => {
                     width:180,
                     height: 125,
                     borderRadius: 10,
-                    // backgroundColor: isThemeLight ? '#E5E5E5' : '#17151f',
                     borderWidth: isThemeLight ? 1 : 0,
                     borderColor: '#E5E5E5',
                     shadowColor: 'rgb(90, 108, 234)',
@@ -90,11 +89,11 @@ const SleepMusic = ({navigation}: Props) => {
                     },
                     shadowOpacity: 0.5,
                     shadowRadius: 50,
-                    elevation: 5,
+                    elevation: 4,
                   }}>
                   <Image
                     style={{
-                      width: 177,
+                      width: 172,
                       height: 122,
                       borderRadius: 10,
                       borderColor: 'black',
@@ -122,34 +121,4 @@ const SleepMusic = ({navigation}: Props) => {
 
 export default SleepMusic;
 
-const styles = StyleSheet.create({
-  back: {
-    width: 55,
-    height: 55,
-    backgroundColor: '#E5E5E5',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 55 / 2,
-    marginLeft: 20,
-    position: 'absolute',
-    zIndex: 1,
-    marginTop: 35,
-  },
-  bg: {
-    alignSelf: 'center',
-    position: 'absolute',
-    width: width,
-    height: (width / 414) * 290,
-    resizeMode: 'cover',
-  },
-  viewbtn: {alignItems: 'center', marginBottom: 16},
-  playbtn: {
-    backgroundColor: '#8E97FD',
-    width: 350,
-    height: 60,
-    borderRadius: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
-    alignSelf: 'center',
-  },
-});
+const styles = StyleSheet.create({});

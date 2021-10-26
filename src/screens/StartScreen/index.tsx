@@ -27,7 +27,7 @@ const WelcomeScreen = () => {
           style={{
             backgroundColor: 'white',
             height: 63,
-            width: 374,
+            width: 350,
             alignItems: 'center',
             justifyContent: 'center',
             borderRadius: 30,
