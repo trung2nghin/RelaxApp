@@ -6,12 +6,11 @@ import {
   Dimensions,
   TouchableOpacity,
   Image,
-  Easing,
 } from 'react-native';
-import {Text} from 'react-native-ui-lib';
+import {Colors} from 'react-native-ui-lib';
 import {useSelector} from 'react-redux';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import {RootState} from '../../../reduxs/store';
-import {RouteProp, useRoute} from '@react-navigation/native';
 import Txt from '../../../components/Txt';
 
 const width = Dimensions.get('window').width;
@@ -77,10 +76,15 @@ const ShortPlaying = ({}) => {
   return (
     <Animated.View
       style={{
-        width: '100%',
-        height: isPlaying ? 65 : 0,
+        position: isPlaying ? 'relative' : 'absolute',
+        width: width - 20,
+        height: 65,
         backgroundColor: isThemeLight ? '#FFF' : '#292929',
-        bottom: 0,
+        bottom: 15,
+        left: 10,
+        right: 10,
+        borderRadius: 20,
+        ...styles.shadow,
         flexDirection: 'row',
         padding: 8,
         opacity,
@@ -122,18 +126,45 @@ const ShortPlaying = ({}) => {
             backgroundColor: 'rgba(0,0,0,1)',
           }}></View>
       </View>
-      <TouchableOpacity>
-        <View
-          style={{
-            width: 310,
-            height: 50,
-            marginLeft: 16,
-            // backgroundColor: '#FFF',
-          }}>
-          <Txt m24>{currentSong}</Txt>
-          <Txt>{currentArtist}</Txt>
-        </View>
-      </TouchableOpacity>
+      <View style={{width: width * 0.55}}>
+        <TouchableOpacity>
+          <View
+            style={{
+              width: width*0.5,
+              height: 50,
+              marginLeft: 16,
+              // backgroundColor: 'red',
+            }}>
+            <Txt m24>{currentSong}</Txt>
+            <Txt>{currentArtist}</Txt>
+          </View>
+        </TouchableOpacity>
+      </View>
+
+      <View style={{flexDirection: 'row', alignItems: 'center'}}>
+        <TouchableOpacity>
+          <Ionicons
+            name="play-skip-back"
+            size={24}
+            color={isThemeLight ? Colors.textColor : Colors.bgColor1}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Ionicons
+            name={'ios-pause'}
+            size={35}
+            color={
+              isThemeLight ? Colors.textColor : Colors.bgColor1
+            }></Ionicons>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Ionicons
+            name="play-skip-forward"
+            size={24}
+            color={isThemeLight ? Colors.textColor : Colors.bgColor1}
+          />
+        </TouchableOpacity>
+      </View>
     </Animated.View>
   );
 };
@@ -146,5 +177,15 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderColor: 'rgba(0,0,0,0.3)',
     borderWidth: 1,
+  },
+  shadow: {
+    shadowColor: 'rgb(90, 108, 234)',
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.5,
+    elevation: 5,
   },
 });

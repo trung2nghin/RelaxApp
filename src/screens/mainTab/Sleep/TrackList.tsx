@@ -17,7 +17,7 @@ type SleepMusicScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
   'SleepMusic'
 >;
- 
+
 type Props = {
   navigation: SleepMusicScreenNavigationProp;
 };
@@ -76,15 +76,34 @@ const SleepMusic = ({navigation}: Props) => {
           renderItem={({item}) => (
             <View padding-10>
               <TouchableOpacity onPress={goPlaying}>
-                <Image
+                <View
                   style={{
-                    width: 177,
-                    height: 122,
+                    width:180,
+                    height: 125,
                     borderRadius: 10,
-                    borderColor: 'black',
-                  }}
-                  source={{uri: `${item.artwork}`}}
-                />
+                    // backgroundColor: isThemeLight ? '#E5E5E5' : '#17151f',
+                    borderWidth: isThemeLight ? 1 : 0,
+                    borderColor: '#E5E5E5',
+                    shadowColor: 'rgb(90, 108, 234)',
+                    shadowOffset: {
+                      width: 1,
+                      height: 1.5,
+                    },
+                    shadowOpacity: 0.5,
+                    shadowRadius: 50,
+                    elevation: 5,
+                  }}>
+                  <Image
+                    style={{
+                      width: 177,
+                      height: 122,
+                      borderRadius: 10,
+                      borderColor: 'black',
+                    }}
+                    source={{uri: `${item.artwork}`}}
+                  />
+                </View>
+
                 <Txt center b16 marginT-8>
                   {item.title}
                 </Txt>
@@ -96,6 +115,7 @@ const SleepMusic = ({navigation}: Props) => {
           )}
         />
       </View>
+      <View style={{height: 10}}/>
       <ShortPlaying />
     </Container>
   );

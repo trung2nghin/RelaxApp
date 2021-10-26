@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Button, TouchableOpacity} from 'react-native';
+import {StyleSheet, Button, TouchableOpacity, Text} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import Txt from '../../../components/Txt';
 import {AppDispatch, RootState} from '../../../reduxs/store';
@@ -20,7 +20,7 @@ const ButtonUpdateTheme = () => {
           dispatch(onUpdateTheme(lightTheme));
         }
       }}>
-      <Txt>Change Themes</Txt>
+      <Text>Change Themes</Text>
     </TouchableOpacity>
   );
 };

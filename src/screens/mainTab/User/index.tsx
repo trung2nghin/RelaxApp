@@ -14,6 +14,8 @@ import {ISong} from '../../../data/itemSong';
 import urls from '../../../config/Api';
 import {NavigationProp, useNavigation} from '@react-navigation/core';
 import {RootStackParamList} from '../../../nav/RootStack';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../../reduxs/store';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -22,7 +24,9 @@ const User = () => {
   const {navigate} = useNavigation<NavigationProp<RootStackParamList>>();
   const [loading, setLoading] = React.useState<boolean>(true);
   const [data, setData] = React.useState<ISong[]>([]);
-
+  const isThemeLight = useSelector<RootState, boolean>(
+    state => state.theme.isThemeLight,
+  );
   const goPlaying = React.useCallback(() => {
     navigate('Music', {listSong: data});
   }, [data]);
@@ -58,8 +62,8 @@ const User = () => {
             flex
             style={{
               borderRadius: 10,
-              backgroundColor: '#E5E5E5',
-              borderWidth: 1,
+              backgroundColor: isThemeLight ? '#E5E5E5' : '#17151f',
+              borderWidth: isThemeLight ? 1 : 0,
               borderColor: '#E5E5E5',
               shadowColor: 'rgb(90, 108, 234)',
               shadowOffset: {
@@ -109,8 +113,8 @@ const User = () => {
             style={{
               marginTop: 10,
               borderRadius: 10,
-              backgroundColor: '#E5E5E5',
-              borderWidth: 1,
+              backgroundColor: isThemeLight ? '#E5E5E5' : '#17151f',
+              borderWidth: isThemeLight ? 1 : 0,
               borderColor: '#E5E5E5',
               shadowColor: 'rgb(90, 108, 234)',
               shadowOffset: {
