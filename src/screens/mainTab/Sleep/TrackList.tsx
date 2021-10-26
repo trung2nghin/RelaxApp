@@ -17,7 +17,7 @@ type SleepMusicScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
   'SleepMusic'
 >;
- 
+
 type Props = {
   navigation: SleepMusicScreenNavigationProp;
 };
@@ -37,7 +37,6 @@ const SleepMusic = ({navigation}: Props) => {
       .then(response => response.json())
       .then(songs => {
         console.log('json', songs);
-
         setData(songs);
         setLoading(false);
       })
@@ -48,8 +47,8 @@ const SleepMusic = ({navigation}: Props) => {
 
   const onEndReached = React.useCallback(() => {
     //check het data
-    // setData((prev: ISong[]) => prev.concat(itemSong));
-    // console.log('song', itemSong);
+    // setData((prev: ISong[]) => prev.concat(data));
+    // console.log('song', data);
   }, []);
 
   const goPlaying = React.useCallback(() => {
@@ -69,7 +68,7 @@ const SleepMusic = ({navigation}: Props) => {
         <FlatList
           style={{marginTop: 16}}
           data={data}
-          numColumns={2}
+          horizontal
           keyExtractor={(item, index) => index.toString()}
           onEndReached={onEndReached}
           refreshing={isRefresh}
@@ -89,7 +88,7 @@ const SleepMusic = ({navigation}: Props) => {
                   {item.title}
                 </Txt>
                 <Txt center m14 marginT-2 textColor2>
-                  {item.duration} min
+                  {item.duration} seconds
                 </Txt>
               </TouchableOpacity>
             </View>

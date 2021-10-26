@@ -50,7 +50,7 @@ const User = () => {
           />
           <View style={{marginLeft: 16}}>
             <Txt b30 style={{marginTop: 20}}>
-              Astra Zeneca
+              Jake The Dog
             </Txt>
             <Txt m16>SAN FRANCISCO, CA</Txt>
           </View>
