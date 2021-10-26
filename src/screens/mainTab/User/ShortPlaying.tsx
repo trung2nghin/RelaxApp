@@ -12,10 +12,19 @@ import {useSelector} from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {RootState} from '../../../reduxs/store';
 import Txt from '../../../components/Txt';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {RootStackParamList} from '../../../nav/RootStack';
+import {NavigationProp, useNavigation} from '@react-navigation/core';
 
 const width = Dimensions.get('window').width;
 
-const ShortPlaying = ({}) => {
+const ShortPlaying = () => {
+  const {navigate} = useNavigation<NavigationProp<RootStackParamList>>();
+
+  const goPlaying = React.useCallback(() => {
+    navigate('Music', {listSong: []});
+  }, []);
+
   const isThemeLight = useSelector<RootState, boolean>(
     state => state.theme.isThemeLight,
   );
@@ -165,6 +174,18 @@ const ShortPlaying = ({}) => {
           />
         </TouchableOpacity>
       </View>
+      <TouchableOpacity onPress={goPlaying}>
+        <View
+          style={{
+            width: 310,
+            height: 50,
+            marginLeft: 16,
+            // backgroundColor: '#FFF',
+          }}>
+          <Txt m24>{currentSong}</Txt>
+          <Txt>{currentArtist}</Txt>
+        </View>
+      </TouchableOpacity>
     </Animated.View>
   );
 };

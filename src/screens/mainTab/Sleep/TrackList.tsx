@@ -37,7 +37,6 @@ const SleepMusic = ({navigation}: Props) => {
       .then(response => response.json())
       .then(songs => {
         console.log('json', songs);
-
         setData(songs);
         setLoading(false);
       })
@@ -48,8 +47,8 @@ const SleepMusic = ({navigation}: Props) => {
 
   const onEndReached = React.useCallback(() => {
     //check het data
-    // setData((prev: ISong[]) => prev.concat(itemSong));
-    // console.log('song', itemSong);
+    // setData((prev: ISong[]) => prev.concat(data));
+    // console.log('song', data);
   }, []);
 
   const goPlaying = React.useCallback(() => {
@@ -67,7 +66,7 @@ const SleepMusic = ({navigation}: Props) => {
       {/* related button */}
       <View flex>
         <FlatList
-          style={{marginTop: 16}}
+          style={{marginTop: 16, marginHorizontal: 16}}
           data={data}
           numColumns={2}
           keyExtractor={(item, index) => index.toString()}
@@ -108,7 +107,7 @@ const SleepMusic = ({navigation}: Props) => {
                   {item.title}
                 </Txt>
                 <Txt center m14 marginT-2 textColor2>
-                  {item.duration} min
+                  {item.duration} seconds
                 </Txt>
               </TouchableOpacity>
             </View>
